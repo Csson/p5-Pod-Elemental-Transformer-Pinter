@@ -1,6 +1,6 @@
 # NAME
 
-Pod::Elemental::Transformer::Splint - ...
+Pod::Elemental::Transformer::Splint - Documentation from class metadata
 
 # VERSION
 
@@ -93,6 +93,10 @@ _begin_
 _end_
 
 # SEE ALSO
+
+# SOURCE
+
+[https://github.com/Csson/p5-Pod-Elemental-Transformer-Splint](https://github.com/Csson/p5-Pod-Elemental-Transformer-Splint)
 
 # HOMEPAGE
 

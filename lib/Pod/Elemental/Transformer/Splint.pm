@@ -5,7 +5,7 @@ use warnings;
 package Pod::Elemental::Transformer::Splint;
 
 # VERSION
-# ABSTRACT: ...
+# ABSTRACT: Documentation from class metadata
 
 use Moose;
 use Path::Tiny;

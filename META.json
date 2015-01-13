@@ -1,5 +1,5 @@
 {
-   "abstract" : "...",
+   "abstract" : "Documentation from class metadata",
    "author" : [
       "Erik Carlsson <info@code301.com>"
    ],
@@ -35,6 +35,10 @@
          }
       },
       "runtime" : {
+         "recommends" : {
+            "Kavorka::TraitFor::ReturnType" : "0",
+            "MooseX::AttributeDocumented" : "0"
+         },
          "requires" : {
             "List::AllUtils" : "0",
             "Moose" : "0",
@@ -53,7 +57,17 @@
       }
    },
    "release_status" : "stable",
-   "resources" : {},
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/Csson/p5-Pod-Elemental-Transformer-Splint/issues"
+      },
+      "homepage" : "https://metacpan.org/release/Pod-Elemental-Transformer-Splint",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/Csson/p5-Pod-Elemental-Transformer-Splint.git",
+         "web" : "https://github.com/Csson/p5-Pod-Elemental-Transformer-Splint"
+      }
+   },
    "version" : "0.0001"
 }
 
