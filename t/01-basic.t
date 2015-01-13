@@ -3,9 +3,8 @@ use warnings FATAL => 'all';
 use Test::More;
 use if $ENV{'AUTHOR_TESTING'}, 'Test::Warnings';
 
-use Pod::Elemental::Transformer::Pinter;
+use Pod::Elemental::Transformer::Splint;
 
-# replace with the actual test
-ok 1;
+Pod::Elemental::Transformer::Splint->new;
 
 done_testing;
