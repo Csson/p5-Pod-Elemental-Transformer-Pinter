@@ -16,8 +16,8 @@ use syntax 'qs';
 with 'Pod::Elemental::Transformer::Splint::MethodRenderer';
 
 sub render_method {
-	my $self = shift;
-	my $data = shift;
+    my $self = shift;
+    my $data = shift;
 
     my $positional_params = $data->{'positional_params'};
     my $named_params = $data->{'named_params'};
@@ -33,8 +33,6 @@ sub render_method {
     $html .= sprintf qq{<table $table_style>
                         <tr $tr_style><td $th_style colspan="%s">Positional parameters</td></tr>}, $self->get_colspan($positional_params);
 
-    warn 'positional: ' . scalar @$positional_params;
-    warn 'named: ' . scalar @$named_params;
     if(scalar @$positional_params) {
         foreach my $param (@$positional_params) {
 
@@ -82,7 +80,7 @@ sub render_method {
 
     my $content = sprintf qs{
         =begin HTML
-        
+
             <p>%s</p>
 
             %s

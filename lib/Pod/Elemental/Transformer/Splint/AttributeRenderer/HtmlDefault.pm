@@ -45,17 +45,17 @@ sub render_attribute {
     push @$items => $settings->{'is_text'};
 
     my $last_item = pop @$items;
-    my $cells = [ map { $self->make_cell_with_border($_) } @$items ];
+    my $cells = [ map { $self->make_cell_with_border(nowrap => 1, text => $_) } @$items ];
 
-    push @$cells => scalar @{ $documentation_alts } ? $self->make_cell_with_border($last_item)
-                 :                                    $self->make_cell_without_border($last_item)
+    push @$cells => scalar @{ $documentation_alts } ? $self->make_cell_with_border(nowrap => 1, text => $last_item)
+                 :                                    $self->make_cell_without_border(nowrap => 1, text => $last_item)
                  ;
 
     if(scalar @{ $documentation_alts }) {
         my $first_doc_alt = shift @{ $documentation_alts };
 
-        push @$cells => $self->make_cell_without_border_right_aligned( $self->parse_pod(sprintf 'C<%s>:', $first_doc_alt->[0]) ),
-                       $self->make_cell_extra_padded_without_border($first_doc_alt->[1]);
+        push @$cells => $self->make_cell_without_border_right_aligned(nowrap => 0, text => $self->parse_pod(sprintf 'C<%s>:', $first_doc_alt->[0]) ),
+                       $self->make_cell_extra_padded_without_border(nowrap => 0, text => $first_doc_alt->[1]);
     }
 
     my $rows = [ $cells ];
@@ -65,8 +65,8 @@ sub render_attribute {
 
         foreach my $doc_alt (@{ $documentation_alts }) {
             my $row = [ ('<td>&#160;</td>') x $number_of_cells_left_of_doc ];
-            push @{ $row } => $self->make_cell_without_border_right_aligned( $self->parse_pod(sprintf 'C<%s>:', $doc_alt->[0]) ),
-                              $self->make_cell_extra_padded_without_border($doc_alt->[1]);
+            push @{ $row } => $self->make_cell_without_border_right_aligned(nowrap => 0, text => $self->parse_pod(sprintf 'C<%s>:', $doc_alt->[0]) ),
+                              $self->make_cell_extra_padded_without_border(nowrap => 0, text => $doc_alt->[1]);
             push @{ $rows } => $row;
         }
     }
@@ -95,27 +95,35 @@ sub render_attribute {
 
 sub make_cell_without_border {
     my $self = shift;
-    my $item = shift;
+    my %args = @_;
+    my $text = $args{'text'};
+    my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
 
-    return sprintf q{<td style="padding-left: 6px; padding-right: 6px;"><span>%s</span></td>}, $item;
+    return qq{<td style="padding-left: 6px; padding-right: 6px;$nowrap">$text</td>};
 }
 sub make_cell_extra_padded_without_border {
     my $self = shift;
-    my $item = shift;
+    my %args = @_;
+    my $text = $args{'text'};
+    my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
 
-    return sprintf q{<td style="padding-left: 12px;"><span>%s</span></td>}, $item;
+    return qq{<td style="padding-left: 12px;$nowrap">$text</td>};
 }
 sub make_cell_with_border {
     my $self = shift;
-    my $item = shift;
+    my %args = @_;
+    my $text = $args{'text'};
+    my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
 
-    return sprintf q{<td><span style="padding-right: 6px; padding-left: 6px; border-right: 1px solid #b8b8b8;">%s</span></td>}, $item;
+    return qq{<td style="padding-right: 6px; padding-left: 6px; border-right: 1px solid #b8b8b8;$nowrap">$text</td>};
 }
 sub make_cell_without_border_right_aligned {
     my $self = shift;
-    my $item = shift;
+    my %args = @_;
+    my $text = $args{'text'};
+    my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
 
-    return sprintf q{<td style="text-align: right;"><span style="padding-right: 6px; padding-left: 6px;">%s</span></td>}, $item;
+    return qq{<td style="text-align: right; padding-right: 6px; padding-left: 6px;$nowrap">$text</td>};
 }
 
 1;

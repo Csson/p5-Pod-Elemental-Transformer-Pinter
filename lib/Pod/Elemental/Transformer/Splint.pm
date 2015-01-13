@@ -103,7 +103,6 @@ sub transform_node {
 
     CHILD:
     foreach my $child (@{ $node->children }) {
-        
 
         my $line_start = substr($child->content, 0 => length ($self->command_name) + 1);
         next CHILD if $line_start ne sprintf '%s ', $self->command_name;
@@ -127,7 +126,7 @@ sub transform_node {
                                          ($a->does('Documented') && $a->has_documentation_order ? $a->documentation_order : 1000) <=> ($b->does('Documented') && $b->has_documentation_order ? $b->documentation_order : 1000)
                                       || ($b->is_required || 0) <=> ($a->is_required || 0)
                                       ||  $a->name cmp $b->name
-                                  } 
+                                  }
                                   map { $self->classmeta->get_attribute($_) }
                                   $self->classmeta->get_attribute_list;
             my $content = '';
@@ -202,7 +201,7 @@ sub prepare_method {
 
     my $positional_params = [];
     foreach my $param ($method->signature->positional_params) {
-        push @$positional_params => { 
+        push @$positional_params => {
             name => $param->name,
             %{ $self->prepare_param($param) },
         };
@@ -212,7 +211,7 @@ sub prepare_method {
     foreach my $param (sort { $a->optional <=> $b->optional || $a->name cmp $b->name } $method->signature->named_params) {
         my $name = $param->name;
         $name =~ s{[\@\$\%]}{};
-        push @$named_params => { 
+        push @$named_params => {
             name => $param->name,
             name_without_sigil => $name,
             %{ $self->prepare_param($param) },
