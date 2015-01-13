@@ -10,8 +10,8 @@ use Pod::Elemental;
 use Pod::Elemental::Transformer::Pod5;
 use Pod::Elemental::Transformer::Splint;
 
-eval "use Kavorka::TraitFor::Parameter::doc";
-plan skip_all => 'These tests need Kavorka::TraitFor::Parameter::doc' if $@;
+eval "use Kavorka";
+plan skip_all => 'These tests need Kavorka' if $@;
 eval "use Kavorka::TraitFor::ReturnType::doc";
 plan skip_all => 'These tests need Kavorka::TraitFor::ReturnType::doc' if $@;
 

@@ -41,21 +41,21 @@ has html_attribute_renderer => (
     isa => 'Str',
     default => 'HtmlDefault',
 );
-has text_attribute_renderer => (
-    is => 'rw',
-    isa => 'Str',
-    default => '0',
-);
+#has text_attribute_renderer => (
+#    is => 'rw',
+#    isa => 'Str',
+#    default => '0',
+#);
 has html_method_renderer => (
     is => 'rw',
     isa => 'Str',
     default => 'HtmlDefault',
 );
-has text_method_renderer => (
-    is => 'rw',
-    isa => 'Str',
-    default => '0',
-);
+#has text_method_renderer => (
+#    is => 'rw',
+#    isa => 'Str',
+#    default => '0',
+#);
 has attribute_renderers => (
     is => 'rw',
     isa => 'ArrayRef',
@@ -110,7 +110,7 @@ sub BUILD {
     foreach my $type (qw/attribute method/) {
 
         RENDERER:
-        foreach my $output (qw/html text/) {
+        foreach my $output (qw/html/) {
             my $accessor = sprintf '%s_%s_renderer', $output, $type;
             my $class = sprintf '%s::%sRenderer::%s', $base, ucfirst $type, $self->$accessor;
 
@@ -194,9 +194,6 @@ sub transform_node {
             $child->content($content);
 
         }
-
-
-
     }
 }
 sub prepare_attr {
@@ -336,9 +333,7 @@ sub is_text {
     return $attr->has_write_method ? 'read/write' : 'read-only';
 }
 
-
 1;
-
 
 __END__
 
@@ -346,11 +341,191 @@ __END__
 
 =head1 SYNOPSIS
 
-    use Pod::Elemental::Transformer::Splint;
+    # in weaver.ini
+    [-Transformer / Splint]
+    transformer = Splint
 
 =head1 DESCRIPTION
 
-Pod::Elemental::Transformer::Splint is ...
+Pod::Elemental::Transformer::Splint uses L<MooseX::AttributeDocumented> to add inlined documentation about attributes to pod.
+If you write your classes with L<Moops> you can also document method signatures with L<Kavorka::TraitFor::Parameter::doc> (and L<::ReturnType::doc|Kavorka::TraitFor::ReturnType::doc>).
+
+A class defined like this:
+
+    package My::Class;
+
+    use Moose;
+
+    has has_brakes => (
+        is => 'ro',
+        isa => Bool,
+        default => 1,
+        traits => ['Documented'],
+        documentation => 'Does the bike have brakes?',
+        documentation_alts => {
+            0 => 'Hopefully a track bike',
+            1 => 'Always nice to have',
+        },
+    );
+
+    =pod
+
+    :splint classname My::Class
+
+    :splint attributes
+
+    =cut
+
+Will render like this (to html):
+
+I<begin>
+
+=begin HTML
+
+<h2 id="has_brakes">has_brakes</h2>
+
+<table cellpadding="0" cellspacing="0">
+<tr><td style="padding-right: 6px; padding-left: 6px; border-right: 1px solid #b8b8b8; white-space: nowrap;"><a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a></td>
+<td style="padding-right: 6px; padding-left: 6px; border-right: 1px solid #b8b8b8; white-space: nowrap;">optional, default: <code>1</code></td>
+<td style="padding-right: 6px; padding-left: 6px; border-right: 1px solid #b8b8b8; white-space: nowrap;">read-only</td>
+<td style="text-align: right; padding-right: 6px; padding-left: 6px;"><code>0</code>:</td>
+<td style="padding-left: 12px;">Hopefully a track bike</td></tr><tr><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td style="text-align: right; padding-right: 6px; padding-left: 6px;"><code>1</code>:</td>
+<td style="padding-left: 12px;">Always nice to have</td></tr>
+</table><p>Does the bike have brakes?</p>
+
+=end HTML
+
+I<end>
+
+A L<Moops> class defined like this:
+
+    class My::MoopsClass using Moose {
+
+        ...
+
+        method advanced_method(Int $integer                        does doc("Just an integer\nmethod_doc|This method is advanced."),
+                               ArrayRef[Str|Bool] $lots_of_stuff   does doc('It works with both types'),
+                               Str :$name!                         does doc("What's the name")
+                           --> Bool but assumed                    does doc('Did it succeed?')
+
+        ) {
+            return 1;
+        }
+
+        method less_advanced($stuff,
+                             $another_thing                     does doc("Don't know what we get here"),
+                             ArrayRef $the_remaining is slurpy  does doc('All the remaining')
+        )  {
+            return 1;
+        }
+
+        ...
+    }
+
+    =pod
+
+    :splint classname My::MoopsClass
+
+    :splint method advanced_method
+
+    It needs lots of documentation.
+
+    :splint method less_advanced
+
+    =cut
+
+Will render like this (to html):
+
+I<begin>
+
+=begin HTML
+
+<h2 id="advanced_method">advanced_method</h2>
+
+
+
+<p>This method is advanced.</p><table style="margin-bottom: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;" colspan="5">Positional parameters</td></tr>
+<tr style="vertical-align: top;">
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$integer</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Just an integer<br /></td>
+</tr>
+<tr style="vertical-align: top;">
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$lots_of_stuff</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a>[ <a href="https://metacpan.org/pod/Types::Standard#Str">Str</a> | <a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a> ]</td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">It works with both types<br /></td>
+</tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;" colspan="5">Named parameters</td></tr>
+<tr style="vertical-align: top;">
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>name =&gt; $value</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">What's the name</td>
+</tr>
+<tr style="vertical-align: top;">
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>age =&gt; $value</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= 0</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">The age of the thing</td>
+</tr>
+<tr style="vertical-align: top;">
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>pseudonym =&gt; $value</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, <span style="color: #999;">no default</span></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Incognito..</td>
+</tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;" colspan="5">Returns</td></tr>
+<tr style="vertical-align: top;">
+<td  colspan="4"  style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a></td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Did it succeed?</td>
+</tr>
+</table>
+
+<p>It needs lots of documentation.</p>
+
+<h2 id="less_advanced">less_advanced</h2>
+
+
+
+<p></p><table style="margin-bottom: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;" colspan="5">Positional parameters</td></tr>
+<tr style="vertical-align: top;">
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$stuff</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;"></td>
+</tr>
+<tr style="vertical-align: top;">
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$another_thing</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Don't know what we get here<br /></td>
+</tr>
+<tr style="vertical-align: top;">
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$the_remaining</code></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a></td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">slurpy</td>
+<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">All the remaining<br /></td>
+</tr>
+</table>
+
+=end HTML
+
+I<end>
 
 =head1 SEE ALSO
 

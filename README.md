@@ -4,15 +4,93 @@ Pod::Elemental::Transformer::Splint - ...
 
 # VERSION
 
-Version 0.0001, released 2015-01-13.
+Version 0.0001, released 2015-01-14.
 
 # SYNOPSIS
 
-    use Pod::Elemental::Transformer::Splint;
+    # in weaver.ini
+    [-Transformer / Splint]
+    transformer = Splint
 
 # DESCRIPTION
 
-Pod::Elemental::Transformer::Splint is ...
+Pod::Elemental::Transformer::Splint uses [MooseX::AttributeDocumented](https://metacpan.org/pod/MooseX::AttributeDocumented) to add inlined documentation about attributes to pod.
+If you write your classes with [Moops](https://metacpan.org/pod/Moops) you can also document method signatures with [Kavorka::TraitFor::Parameter::doc](https://metacpan.org/pod/Kavorka::TraitFor::Parameter::doc) (and [::ReturnType::doc](https://metacpan.org/pod/Kavorka::TraitFor::ReturnType::doc)).
+
+A class defined like this:
+
+    package My::Class;
+
+    use Moose;
+
+    has has_brakes => (
+        is => 'ro',
+        isa => Bool,
+        default => 1,
+        traits => ['Documented'],
+        documentation => 'Does the bike have brakes?',
+        documentation_alts => {
+            0 => 'Hopefully a track bike',
+            1 => 'Always nice to have',
+        },
+    );
+
+    =pod
+
+    :splint classname My::Class
+
+    :splint attributes
+
+    =cut
+
+Will render like this (to html):
+
+_begin_
+
+_end_
+
+A [Moops](https://metacpan.org/pod/Moops) class defined like this:
+
+    class My::MoopsClass using Moose {
+
+        ...
+
+        method advanced_method(Int $integer                        does doc("Just an integer\nmethod_doc|This method is advanced."),
+                               ArrayRef[Str|Bool] $lots_of_stuff   does doc('It works with both types'),
+                               Str :$name!                         does doc("What's the name")
+                           --> Bool but assumed                    does doc('Did it succeed?')
+
+        ) {
+            return 1;
+        }
+
+        method less_advanced($stuff,
+                             $another_thing                     does doc("Don't know what we get here"),
+                             ArrayRef $the_remaining is slurpy  does doc('All the remaining')
+        )  {
+            return 1;
+        }
+
+        ...
+    }
+
+    =pod
+
+    :splint classname My::MoopsClass
+
+    :splint method advanced_method
+
+    It needs lots of documentation.
+
+    :splint method less_advanced
+
+    =cut
+
+Will render like this (to html):
+
+_begin_
+
+_end_
 
 # SEE ALSO
 

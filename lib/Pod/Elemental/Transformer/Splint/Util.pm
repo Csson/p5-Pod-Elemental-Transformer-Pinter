@@ -39,6 +39,7 @@ sub determine_type_library {
 sub make_type_string {
     my $self = shift;
     my $type_constraint = shift;
+    return '' if !defined $type_constraint;
 
     # The type knows its own library
     return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $type_constraint, $type_constraint->library, $type_constraint) if $type_constraint->$_can('library') && defined $type_constraint->library;

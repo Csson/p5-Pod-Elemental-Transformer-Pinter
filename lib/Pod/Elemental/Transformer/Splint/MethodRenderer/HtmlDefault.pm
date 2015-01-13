@@ -149,7 +149,7 @@ sub make_cell_without_border {
 }
 sub make_cell_with_border {
     my $self = shift;
-    
+
     my($text, $nowrap, $colspan_text) = $self->fix_cell_args(@_);
     my $padding = defined $text ? ' padding: 3px 6px;' : '';
     $text = defined $text ? $text : '';
