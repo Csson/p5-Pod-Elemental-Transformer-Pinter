@@ -1,7 +1,13 @@
 requires 'perl', '5.010001';
 
-# requires 'Some::Module', 'VERSION';
+requires 'List::AllUtils';
+requires 'Moose';
+requires 'Moose::Role';
+requires 'Path::Tiny';
+requires 'Safe::Isa';
+requires 'syntax';
+requires 'Syntax::Feature::Qs';
 
 on test => sub {
-requires 'Test::More', '0.96';
+    requires 'Test::More', '0.96';
 };
