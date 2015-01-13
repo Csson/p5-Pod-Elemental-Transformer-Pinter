@@ -27,39 +27,69 @@ sub parse_pod {
     return $results;
 }
 
+sub determine_type_library {
+    my $self = shift;
+    my $type_constraint = shift;
+
+    return $self->get_library_for_type($type_constraint) if $self->get_library_for_type($type_constraint);
+    return $self->default_type_library if $self->has_default_type_library;
+    return $type_constraint;
+}
+
 sub make_type_string {
     my $self = shift;
     my $type_constraint = shift;
 
-    if(!$type_constraint->$_can('library')) {
-        return $type_constraint if !$self->has_fallback_type_library;
-        return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $type_constraint, $self->has_fallback_type_library, $type_constraint);
-    }
+    # The type knows its own library
+    return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $type_constraint, $type_constraint->library, $type_constraint) if $type_constraint->$_can('library') && defined $type_constraint->library;
 
-    my $library = $type_constraint->library;
-
-    return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $type_constraint, $library, $type_constraint) if defined $library;
-
+    # We don't deal with InstanceOf
     if($type_constraint =~ m{InstanceOf}) {
-        if($self->has_fallback_type_library) {
-            $type_constraint =~ s{InstanceOf}{$self->parse_pod(sprintf 'L<%s|%s/"%s>', 'InstanceOf', $self->fallback_type_library, 'InstanceOf')}egi;
+        if($self->has_default_type_library) {
+            $type_constraint =~ s{InstanceOf}{$self->type_string_helper('InstanceOf', $self->default_type_library, 'InstanceOf')}egi;
             $type_constraint =~ s{"}{'}g;
         }
         return $type_constraint
     }
+
+    # If there are multiple types we deal with them individually
     if($type_constraint =~ m{[^a-z0-9_]}i) {
-        if($self->has_fallback_type_library) {
-            $type_constraint =~ s{\b([a-z0-9_]+)\b}{$self->parse_pod(sprintf 'L<%s|%s/"%s>', $1, $self->fallback_type_library, $1)}egi;
-            $type_constraint =~ s{[\v\h]*\|[\v\h]*}{ | }g; # cleanup and ensure some whitespace
-            $type_constraint =~ s{\[}{[ }g;
-            $type_constraint =~ s{\]}{ ]}g;
-        }
+
+        $type_constraint =~ s{\b([a-z0-9_]+)\b}{$self->type_string_helper($1, $self->determine_type_library($1), $1)}egi;
+
+        # cleanup and ensure some whitespace
+        $type_constraint =~ s{\v}{}g;
+        $type_constraint =~ s{\|}{ | }g;
+        $type_constraint =~ s{\[}{[ }g;
+        $type_constraint =~ s{]}{ ]}g;
         return $type_constraint;
     }
-    if($self->has_fallback_type_library) {
-        return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $type_constraint, $library, $type_constraint);
+
+
+    # it can't do library, but it can do name?
+    if($self->$_can('name')) {
+        my $name = $type_constraint->name;
+
+        if($self->get_library_for_type($name)) {
+            return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $name, $self->get_library_for_type($name), $name);
+        }
+        return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $name, $self->has_default_type_library, $name);
     }
-    return $type_constraint;
+
+    if($self->get_library_for_type($type_constraint)) {
+        return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $type_constraint, $self->get_library_for_type($type_constraint), $type_constraint);
+    }
+
+    return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $type_constraint, $self->has_default_type_library, $type_constraint);
+}
+
+sub type_string_helper {
+    my $self = shift;
+    my $text = shift;
+    my $type_library = shift;
+    my $place_on_page = shift;
+
+    return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $text, $type_library, $place_on_page);
 }
 
 1;

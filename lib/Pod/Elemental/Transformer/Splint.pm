@@ -18,13 +18,20 @@ has command_name => (
     isa => 'Str',
     default => ':splint',
 );
-has fallback_type_library => (
+has default_type_library => (
     is => 'rw',
     isa => 'Str',
     default => 'Types::Standard',
-    predicate => 'has_fallback_type_library',
+    predicate => 'has_default_type_library',
 );
-
+has type_libraries => (
+    is => 'rw',
+    isa => 'HashRef',
+    traits => ['Hash'],
+    handles => {
+        get_library_for_type => 'get',
+    },
+);
 has classmeta => (
     is => 'rw',
     predicate => 'has_classmeta',
@@ -67,7 +74,32 @@ has method_renderers => (
         all_method_renderers => 'elements',
     }
 );
+around BUILDARGS => sub {
+    my $orig = shift;
+    my $class = shift;
+    my $args = shift;
 
+    my $type_libraries = {};
+
+    if(exists $args->{'type_libraries'}) {
+        my $lib = $args->{'type_libraries'};
+        $lib =~ s{([^\h]+=)}{---$1}g;
+        $lib =~ s{^---}{};
+        $lib =~ s{\h}{}g;
+        my @libraries = split /---/ => $lib;
+
+        foreach my $librarydata (@libraries) {
+            my($library, $typesdata) = split /=/ => $librarydata;
+            my @types = split /,/ => $typesdata;
+
+            foreach my $type (@types) {
+                $type_libraries->{ $type } = $library;
+            }
+        }
+    }
+    $args->{'type_libraries'} = $type_libraries;
+    $class->$orig($args);
+};
 
 sub BUILD {
     my $self = shift;
@@ -200,14 +232,25 @@ sub prepare_method {
     my $method = shift;
 
     my $positional_params = [];
+    my $named_params = [];
+
+    return { map { $_ => [] } qw/positional_params named_params return_types/ } if !$method->signature;
+
     foreach my $param ($method->signature->positional_params) {
         push @$positional_params => {
             name => $param->name,
             %{ $self->prepare_param($param) },
         };
     }
+    if($method->signature->has_slurpy) {
+        my $slurpy = $method->signature->slurpy_param;
 
-    my $named_params = [];
+        push @$positional_params => {
+            name => $slurpy->name,
+            %{ $self->prepare_param($slurpy) },
+        };
+    }
+
     foreach my $param (sort { $a->optional <=> $b->optional || $a->name cmp $b->name } $method->signature->named_params) {
         my $name = $param->name;
         $name =~ s{[\@\$\%]}{};
@@ -223,7 +266,13 @@ sub prepare_method {
 
         foreach my $return_type (@$return_types) {
             next if !$return_type->$_can('type');
-            push @$all_return_types => $self->make_type_string($return_type->type);
+
+            my($docs, $method_doc) = $self->get_docs($return_type);
+            push @$all_return_types => {
+                type => $self->make_type_string($return_type->type),
+                docs => $docs,
+                method_doc => $method_doc,
+            };
         }
     }
 
@@ -237,28 +286,37 @@ sub prepare_method {
 
 }
 
-sub prepare_param {
+sub get_docs {
     my $self = shift;
-    my $param = shift;
+    my $thing = shift;
 
     my $docs = [];
     my $method_doc = undef;
 
-
-    if(exists $param->traits->{'doc'} && ref $param->traits->{'doc'} eq 'ARRAY') {
-        $docs = [ split /\n/ => join "\n" => @{ $param->traits->{'doc'} } ];
+    if(exists $thing->traits->{'doc'} && ref $thing->traits->{'doc'} eq 'ARRAY') {
+        $docs = [ split /\n/ => join "\n" => @{ $thing->traits->{'doc'} } ];
 
         if(index ($docs->[-1], 'method_doc|') == 0) {
             $method_doc = substr pop @{ $docs }, 11;
         }
     }
+    return ($docs, $method_doc);
+}
+
+sub prepare_param {
+    my $self = shift;
+    my $param = shift;
+
+    my($docs, $method_doc) = $self->get_docs($param);
 
     my $prepared = {
             type => $self->make_type_string($param->type),
             default => defined $param->default ? $param->default->() : undef,
             default_when => $param->default_when,
-            traits => [ sort grep { $_ && $_ ne 'doc' && $_ ne 'optional' } ($param->traits, ($param->coerce ? 'coerce' : () ), ($param->slurpy ? 'slurpy' : () ) ) ],
+            has_default => defined $param->default ? 1 : 0,
+            traits => [ sort grep { $_ && $_ ne 'doc' && $_ ne 'optional' } ($param->traits, ($param->coerce ? 'coerce' : () ) ) ],
             required_text => $self->required_text(!$param->optional),
+            is_required => !$param->optional,
             method_doc => $method_doc,
             docs => $docs,
     };
