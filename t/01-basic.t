@@ -7,4 +7,6 @@ use Pod::Elemental::Transformer::Splint;
 
 Pod::Elemental::Transformer::Splint->new;
 
+is 1, 1, 'Loaded';
+
 done_testing;

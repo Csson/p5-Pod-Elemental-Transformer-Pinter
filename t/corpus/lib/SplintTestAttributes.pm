@@ -12,10 +12,12 @@ has testattr => (
     documentation => 'A fine attribute',
     documentation_order => 2,
     documentation_alts => {
-    	1 => 'a good number',
-    	2 => 'also a good number',
+        1 => 'a good number',
+        2 => 'also a good number',
     },
 );
+
+1;
 
 __END__
 
@@ -23,6 +25,6 @@ __END__
 
 =encoding utf-8
 
-:splint classname MooseX::AttributeDocumented
+:splint classname SplintTestAttributes
 
 :splint attributes

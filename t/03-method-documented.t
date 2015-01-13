@@ -10,14 +10,14 @@ use Pod::Elemental;
 use Pod::Elemental::Transformer::Pod5;
 use Pod::Elemental::Transformer::Splint;
 
-eval "use MooseX::AttributeDocumented";
-plan skip_all => 'These tests need MooseX::AttributeDocumented' if $@;
+eval "use Kavorka::TraitFor::Parameter::doc";
+plan skip_all => 'These tests need Kavorka::TraitFor::Parameter::doc' if $@;
 
 my $pod5 = Pod::Elemental::Transformer::Pod5->new;
 my $splint = Pod::Elemental::Transformer::Splint->new;
 
 
-my $doc = Pod::Elemental->read_file('t/corpus/lib/SplintTestAttributes.pm');
+my $doc = Pod::Elemental->read_file('t/corpus/lib/SplintTestMethods.pm');
 $pod5->transform_node($doc);
 $splint->transform_node($doc);
 
