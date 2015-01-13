@@ -3,15 +3,19 @@ use strict;
 
 use Moops;
 
-class SplintTestAttributes using Moose {
+class SplintTestMethods using Moose {
 
-    method a_test_method(Int $thing   does doc('The first argument'),
-                         Bool :$maybe does doc("If necessary\nmethoddoc|Just a test")
+    method a_test_method(Int $thing!  does doc('The first argument') = '',
+                         Int $woo!    does doc('More arg'),
+                         Bool :$maybe does doc("If necessary\nmethod_doc|Just a test")
                      --> Str          does doc('In the future')
     ) {
         return 'woo';
     }
 
+    method another(Int $before does doc('whooo'), ArrayRef[Int] $thirsty is slurpy does doc('slurper')) {
+        return;
+    }
 }
 
 __END__
@@ -20,6 +24,8 @@ __END__
 
 =encoding utf-8
 
-:splint classname SplintTestAttributes
+:splint classname SplintTestMethods
 
-:splint method a_test_method
+::splint method a_test_method
+
+:splint method another
