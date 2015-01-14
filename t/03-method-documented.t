@@ -23,9 +23,9 @@ my $doc = Pod::Elemental->read_file('t/corpus/lib/SplintTestMethods.pm');
 $pod5->transform_node($doc);
 $splint->transform_node($doc);
 
-#unified_diff;
-#eq_or_diff $doc->as_pod_string, test1(), 'good';
-is $doc->as_pod_string, 1, 'a';
+unified_diff;
+eq_or_diff $doc->as_pod_string, test1(), 'good';
+
 done_testing;
 
 sub test1 {
