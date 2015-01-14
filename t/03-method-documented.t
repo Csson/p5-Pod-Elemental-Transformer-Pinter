@@ -23,9 +23,9 @@ my $doc = Pod::Elemental->read_file('t/corpus/lib/SplintTestMethods.pm');
 $pod5->transform_node($doc);
 $splint->transform_node($doc);
 
-unified_diff;
-eq_or_diff $doc->as_pod_string, test1(), 'good';
-
+#unified_diff;
+#eq_or_diff $doc->as_pod_string, test1(), 'good';
+is $doc->as_pod_string, 1, 'a';
 done_testing;
 
 sub test1 {
@@ -72,7 +72,7 @@ __END__
 <p>Just a test</p>
 
 <table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">Positional parameters</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td></tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td></tr>
 <tr style="vertical-align: top;">
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thing</code>
 
@@ -97,7 +97,7 @@ __END__
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
 <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">More arg<br /></td>
 </tr>
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">Named parameters</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td></tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">Named parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td></tr>
 <tr style="vertical-align: top;">
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>maybe =&gt; $value</code>
 
@@ -109,7 +109,7 @@ __END__
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
 <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">If necessary</td>
 </tr>
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">Returns</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td></tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">Returns</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td></tr>
 <tr style="vertical-align: top;">
 <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a>
 
@@ -128,7 +128,7 @@ __END__
 <p></p>
 
 <table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">Positional parameters</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td></tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td></tr>
 <tr style="vertical-align: top;">
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$before</code>
 
