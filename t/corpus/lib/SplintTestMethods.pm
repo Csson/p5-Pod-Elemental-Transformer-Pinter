@@ -26,6 +26,6 @@ __END__
 
 :splint classname SplintTestMethods
 
-::splint method a_test_method
+:splint method a_test_method
 
 :splint method another

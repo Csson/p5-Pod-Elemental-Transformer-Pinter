@@ -6,10 +6,14 @@ Revision history for Pod-Elemental-Transformer-Pinter
  [Bug Fixes]
 
  [Documentation]
+ - Fixed Moops class example.
 
  [Enhancements]
+ - Uses 'pseudo colspan'. Metacpan seem to remove colspan attributes.
 
  [Meta]
+ - Fixed test prereqs.
+ - Fixed no-op test to actually test.
 
  [New Features]
 

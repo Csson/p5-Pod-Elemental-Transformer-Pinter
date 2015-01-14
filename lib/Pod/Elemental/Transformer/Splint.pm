@@ -408,7 +408,9 @@ A L<Moops> class defined like this:
 
         method advanced_method(Int $integer                        does doc("Just an integer\nmethod_doc|This method is advanced."),
                                ArrayRef[Str|Bool] $lots_of_stuff   does doc('It works with both types'),
-                               Str :$name!                         does doc("What's the name")
+                               Str :$name!                         does doc("What's the name"),
+                               Int :$age                           does doc('The age of the thing') = 0,
+                               Str :$pseudonym                     does doc('Incognito..')
                            --> Bool but assumed                    does doc('Did it succeed?')
 
         ) {
@@ -447,48 +449,48 @@ I<begin>
 
 
 
-<p>This method is advanced.</p><table style="margin-bottom: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;" colspan="5">Positional parameters</td></tr>
+<p>This method is advanced.</p><table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">Positional parameters</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td></tr>
 <tr style="vertical-align: top;">
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$integer</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Just an integer<br /></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$integer</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Just an integer<br /></td>
 </tr>
 <tr style="vertical-align: top;">
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$lots_of_stuff</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a>[ <a href="https://metacpan.org/pod/Types::Standard#Str">Str</a> | <a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a> ]</td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">It works with both types<br /></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$lots_of_stuff</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a>[ <a href="https://metacpan.org/pod/Types::Standard#Str">Str</a> | <a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a> ]</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">It works with both types<br /></td>
 </tr>
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;" colspan="5">Named parameters</td></tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">Named parameters</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td></tr>
 <tr style="vertical-align: top;">
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>name =&gt; $value</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">What's the name</td>
-</tr>
-<tr style="vertical-align: top;">
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>age =&gt; $value</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= 0</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">The age of the thing</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>name =&gt; $value</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">What's the name</td>
 </tr>
 <tr style="vertical-align: top;">
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>pseudonym =&gt; $value</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, <span style="color: #999;">no default</span></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Incognito..</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>age =&gt; $value</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= 0</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">The age of the thing</td>
 </tr>
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;" colspan="5">Returns</td></tr>
 <tr style="vertical-align: top;">
-<td  colspan="4"  style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a></td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Did it succeed?</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>pseudonym =&gt; $value</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, <span style="color: #999;">no default</span></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Incognito..</td>
+</tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">Returns</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td></tr>
+<tr style="vertical-align: top;">
+<td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a></td><td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td><td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td><td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Did it succeed?</td>
 </tr>
 </table>
 
@@ -498,28 +500,28 @@ I<begin>
 
 
 
-<p></p><table style="margin-bottom: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;" colspan="5">Positional parameters</td></tr>
+<p></p><table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">Positional parameters</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td><td style="text-align: left; color: #444; background-color: #eee; font-weight: bold;">&#160;</td></tr>
 <tr style="vertical-align: top;">
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$stuff</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;"></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$stuff</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;"></td>
 </tr>
 <tr style="vertical-align: top;">
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$another_thing</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Don't know what we get here<br /></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$another_thing</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Don't know what we get here<br /></td>
 </tr>
 <tr style="vertical-align: top;">
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$the_remaining</code></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a></td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td  style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">slurpy</td>
-<td  style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">All the remaining<br /></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$the_remaining</code></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a></td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">slurpy</td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">All the remaining<br /></td>
 </tr>
 </table>
 

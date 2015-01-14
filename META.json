@@ -36,7 +36,7 @@
       },
       "runtime" : {
          "recommends" : {
-            "Kavorka::TraitFor::ReturnType" : "0",
+            "Kavorka::TraitFor::ReturnType::doc" : "0",
             "MooseX::AttributeDocumented" : "0"
          },
          "requires" : {
@@ -52,7 +52,11 @@
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0.96"
+            "Pod::Elemental" : "0",
+            "Pod::Elemental::Transformer::Pod5" : "0",
+            "Test::Differences" : "0",
+            "Test::More" : "0.96",
+            "Test::Warnings" : "0"
          }
       }
    },

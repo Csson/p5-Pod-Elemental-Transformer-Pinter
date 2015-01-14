@@ -21,7 +21,7 @@ my $doc = Pod::Elemental->read_file('t/corpus/lib/SplintTestAttributes.pm');
 $pod5->transform_node($doc);
 $splint->transform_node($doc);
 
-eq_or_diff $doc->as_pod_string, test1(), 'good';
+eq_or_diff $doc->as_pod_string, test1(), 'Correct parse of attributes';
 
 sub test1 {
 

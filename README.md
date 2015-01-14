@@ -57,7 +57,9 @@ A [Moops](https://metacpan.org/pod/Moops) class defined like this:
 
         method advanced_method(Int $integer                        does doc("Just an integer\nmethod_doc|This method is advanced."),
                                ArrayRef[Str|Bool] $lots_of_stuff   does doc('It works with both types'),
-                               Str :$name!                         does doc("What's the name")
+                               Str :$name!                         does doc("What's the name"),
+                               Int :$age                           does doc('The age of the thing') = 0,
+                               Str :$pseudonym                     does doc('Incognito..')
                            --> Bool but assumed                    does doc('Did it succeed?')
 
         ) {

@@ -100,6 +100,9 @@ __END__
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>maybe =&gt; $value</code>
 
 </td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a>
+
+</td>
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, <span style="color: #999;">no default</span></td>
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
 <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">If necessary</td>

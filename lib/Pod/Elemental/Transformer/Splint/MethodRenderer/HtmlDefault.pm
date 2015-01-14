@@ -24,7 +24,7 @@ sub render_method {
     my $return_types = $data->{'return_types'};
 
     my @html = ();
-    my $table_style = q{style="margin-bottom: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0"};
+    my $table_style = q{style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0"};
     my $th_style = q{style="text-align: left; color: #444; background-color: #eee; font-weight: bold;"};
     my $tr_style = q{style="vertical-align: top;"};
 
@@ -34,7 +34,8 @@ sub render_method {
 
     if(scalar @$positional_params) {
 
-        push @html => qq{<tr $tr_style><td $th_style colspan="$colspan">Positional parameters</td></tr>};
+        my $fake_colspan = join '' => (qq{<td $th_style>&#160;</td>} x ($colspan - 1));
+        push @html => qq{<tr $tr_style><td $th_style>Positional parameters</td>$fake_colspan</tr>};
 
         foreach my $param (@$positional_params) {
 
@@ -52,7 +53,8 @@ sub render_method {
     }
     if(scalar @$named_params) {
 
-        push @html => qq{  <tr $tr_style><td $th_style colspan="$colspan">Named parameters</td></tr>};
+        my $fake_colspan = join '' => (qq{<td $th_style>&#160;</td>} x ($colspan - 1));
+        push @html => qq{<tr $tr_style><td $th_style>Named parameters</td>$fake_colspan</tr>};
 
         foreach my $param (@$named_params) {
             $method_doc = $param->{'method_doc'} if defined $param->{'method_doc'};
@@ -68,7 +70,8 @@ sub render_method {
         }
     }
     if(scalar @$return_types) {
-        push @html => qq{  <tr $tr_style><td $th_style colspan="$colspan">Returns</td></tr>};
+        my $fake_colspan = join '' => (qq{<td $th_style>&#160;</td>} x ($colspan - 1));
+        push @html => qq{<tr $tr_style><td $th_style>Returns</td>$fake_colspan</tr>};
 
         foreach my $return_type (@$return_types) {
             $method_doc = $return_type->{'method_doc'} if defined $return_type->{'method_doc'};
@@ -142,19 +145,25 @@ sub param_default_text {
 
 sub make_cell_without_border {
     my $self = shift;
-    my($text, $nowrap, $colspan_text) = $self->fix_cell_args(@_);
+    my($text, $nowrap, $colspan) = $self->fix_cell_args(@_);
     $text = defined $text ? $text : '';
 
-    return qq{<td $colspan_text style="padding: 3px 6px; vertical-align: top; $nowrap border-bottom: 1px solid #eee;">$text</td>};
+    my $style = qq{style="padding: 3px 6px; vertical-align: top; $nowrap border-bottom: 1px solid #eee;"};
+    my $colspans = join '' => (qq{<td $style>&#160;</td>} x $colspan);
+
+    return qq{<td $style>$text</td>$colspans};
 }
 sub make_cell_with_border {
     my $self = shift;
 
-    my($text, $nowrap, $colspan_text) = $self->fix_cell_args(@_);
+    my($text, $nowrap, $colspan) = $self->fix_cell_args(@_);
     my $padding = defined $text ? ' padding: 3px 6px;' : '';
     $text = defined $text ? $text : '';
 
-    return qq{<td $colspan_text style="vertical-align: top; border-right: 1px solid #eee;$nowrap $padding border-bottom: 1px solid #eee;">$text</td>};
+    my $style = qq{style="vertical-align: top; border-right: 1px solid #eee;$nowrap $padding border-bottom: 1px solid #eee;"};
+    my $colspans = join '' => (qq{<td $style>&#160;</td>} x $colspan);
+
+    return qq{<td $style>$text</td>$colspans};
 }
 
 sub fix_cell_args {
@@ -163,9 +172,9 @@ sub fix_cell_args {
 
     my $text = $args{'text'};
     my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
-    my $colspan_text = !exists $args{'colspan'} ? '' : qq{ colspan="$args{'colspan'}" };
+    my $colspan = !exists $args{'colspan'} ? 0 : $args{'colspan'} - 1; # Since we add cells *after* the current one.
 
-    return ($text, $nowrap, $colspan_text);
+    return ($text, $nowrap, $colspan);
 }
 
 1;
