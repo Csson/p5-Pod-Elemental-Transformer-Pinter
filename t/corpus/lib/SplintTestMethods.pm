@@ -18,6 +18,8 @@ class SplintTestMethods using Moose {
     }
 }
 
+1;
+
 __END__
 
 =pod
