@@ -6,6 +6,22 @@ Revision history for Pod-Elemental-Transformer-Pinter
  [Bug Fixes]
 
  [Documentation]
+
+ [Enhancements]
+ - Improved the order that attributes are rendered.
+ - Ensure whitespace before [ in type definitions for better legibility.
+ - AttributeRenderer/HtmlDefault: Add a note if an attribute is not available in the constructor.
+ - MethodRenderer/HtmlDefault: Use (mildly) different colours in the three headings
+
+ [Meta]
+
+ [New Features]
+ - (Undocumented feature: ':splint methods' will try to render metadata on all methods.)
+
+ [Revision]
+
+0.1001 2015-01-14T03:06:07Z CET
+ [Documentation]
  - Fixed Moops class example.
 
  [Enhancements]
@@ -14,10 +30,7 @@ Revision history for Pod-Elemental-Transformer-Pinter
  [Meta]
  - Fixed test prereqs.
  - Fixed no-op test to actually test.
-
- [New Features]
-
- [Revision]
+ - Setup build on travis.
 
 0.1000 2015-01-14T00:58:31Z CET
  - Initial release
