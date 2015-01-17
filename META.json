@@ -36,7 +36,7 @@
       },
       "runtime" : {
          "recommends" : {
-            "Kavorka::TraitFor::ReturnType::doc" : "0.1102",
+            "Kavorka::TraitFor::Parameter::doc" : "0.1102",
             "MooseX::AttributeDocumented" : "0.1003"
          },
          "requires" : {
@@ -48,7 +48,7 @@
             "Safe::Isa" : "0",
             "Syntax::Feature::Qs" : "0.2003",
             "Try::Tiny" : "0",
-            "perl" : "5.010001",
+            "perl" : "5.014000",
             "syntax" : "0"
          }
       },

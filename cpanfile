@@ -1,4 +1,4 @@
-requires 'perl', '5.010001';
+requires 'perl', '5.014000';
 
 requires 'List::AllUtils';
 requires 'Moose';
