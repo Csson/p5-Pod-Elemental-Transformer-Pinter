@@ -36,8 +36,8 @@
       },
       "runtime" : {
          "recommends" : {
-            "Kavorka::TraitFor::ReturnType::doc" : "0",
-            "MooseX::AttributeDocumented" : "0"
+            "Kavorka::TraitFor::ReturnType::doc" : "0.1102",
+            "MooseX::AttributeDocumented" : "0.1003"
          },
          "requires" : {
             "List::AllUtils" : "0",

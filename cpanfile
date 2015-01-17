@@ -10,8 +10,8 @@ requires 'Syntax::Feature::Qs', '0.2003';
 requires 'List::UtilsBy';
 requires 'Try::Tiny';
 
-recommends 'MooseX::AttributeDocumented';
-recommends 'Kavorka::TraitFor::ReturnType::doc';
+recommends 'MooseX::AttributeDocumented', '0.1003';
+recommends 'Kavorka::TraitFor::Parameter::doc', '0.1102';
 
 on test => sub {
     requires 'Test::More', '0.96';
