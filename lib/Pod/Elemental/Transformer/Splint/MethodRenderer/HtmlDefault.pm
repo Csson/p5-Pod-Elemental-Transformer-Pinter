@@ -23,7 +23,7 @@ sub render_method {
     my $named_params = $data->{'named_params'};
     my $return_types = $data->{'return_types'};
 
-    my @html = ();
+    my @html = ('');
     my $table_style = q{style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0"};
     my $th_style = q{style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color:};
     my $tr_style = q{style="vertical-align: top;"};
@@ -87,7 +87,7 @@ sub render_method {
         }
     }
     if(scalar @html) {
-        unshift @html => qq{<table $table_style>};
+        unshift @html => '<!-- -->', qq{<table $table_style>};
         push @html => '</table>';
     }
 
@@ -139,6 +139,12 @@ sub param_default_text {
     my $param = shift;
 
     return q{<span style="color: #999;">no default</span>} if !defined $param->{'default'};
+    return $self->parse_pod(sprintf q(default C<%s { }>), $param->{'default_when'}) if ref $param->{'default'} eq 'HASH' && scalar keys %{ $param->{'default'} } == 0;
+    return $self->parse_pod(sprintf q(default C<%s hashref>), $param->{'default_when'}) if ref $param->{'default'} eq 'HASH';
+
+    return $self->parse_pod(sprintf q(default C<%s [ ]>), $param->{'default_when'}) if ref $param->{'default'} eq 'ARRAY' && scalar @{ $param->{'default'} } == 0;
+    return $self->parse_pod(sprintf q(default C<%s arrayref>), $param->{'default_when'}) if ref $param->{'default'} eq 'ARRAY';
+
     return $self->parse_pod(sprintf q{default C<%s coderef>}, $param->{'default_when'}) if ref $param->{'default'} eq 'CODE';
     return $self->parse_pod(sprintf q{default C<%s %s>}, $param->{'default_when'}, $param->{'default'} eq '' ? "''" : $param->{'default'});
 }
