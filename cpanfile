@@ -6,7 +6,9 @@ requires 'Moose::Role';
 requires 'Path::Tiny';
 requires 'Safe::Isa';
 requires 'syntax';
-requires 'Syntax::Feature::Qs';
+requires 'Syntax::Feature::Qs', '0.2003';
+requires 'List::UtilsBy';
+requires 'Try::Tiny';
 
 recommends 'MooseX::AttributeDocumented';
 recommends 'Kavorka::TraitFor::ReturnType::doc';
