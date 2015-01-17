@@ -10,6 +10,8 @@ package Pod::Elemental::Transformer::Splint;
 use Moose;
 use Path::Tiny;
 use Safe::Isa;
+use Try::Tiny;
+use List::UtilsBy 'extract_by';
 use lib 'lib';
 with qw/Pod::Elemental::Transformer Pod::Elemental::Transformer::Splint::Util/;
 
@@ -154,18 +156,34 @@ sub transform_node {
 
         if($action eq 'attributes' && scalar $self->classmeta->get_attribute_list) {
 
-            my @attribute_names = sort {
-                                         ($a->does('Documented') && $a->has_documentation_order ? $a->documentation_order : 1000) <=> ($b->does('Documented') && $b->has_documentation_order ? $b->documentation_order : 1000)
-                                      || ($b->is_required || 0) <=> ($a->is_required || 0)
-                                      ||  $a->name cmp $b->name
-                                  }
-                                  map { $self->classmeta->get_attribute($_) }
-                                  $self->classmeta->get_attribute_list;
+            my @attributes = map { $self->classmeta->get_attribute($_) } $self->classmeta->get_attribute_list;
+
+            my @unwanted = extract_by { $_->does('Documented') && !$_->documentation_order } @attributes;
+
+            my @custom_sort_order_attrs   = sort { $a->documentation_order <=> $b->documentation_order || $a->name cmp $b->name } extract_by { $_->does('Documented') && $_->documentation_order < 1000 }  @attributes;
+            my @docced_not_in_constr_attr = sort { $a->name cmp $b->name } extract_by { !defined $_->init_arg && $_->does('Documented') } @attributes;
+            my @not_in_constructor_attrs  = sort { $a->name cmp $b->name } extract_by { !defined $_->init_arg }  @attributes;
+            my @required_attrs            = sort { $a->name cmp $b->name } extract_by { $_->is_required }        @attributes;
+            my @documented_attrs          = sort { $a->name cmp $b->name } extract_by { $_->does('Documented') } @attributes;
+            my @the_rest                  = sort { $a->name cmp $b->name } @attributes;
+
+            my @wanted_attributes = (@custom_sort_order_attrs, @required_attrs, @documented_attrs, @the_rest, @docced_not_in_constr_attr, @not_in_constructor_attrs);
+            #* First attributes with documentation
+            #* then attributes available in constructor
+            #* then required attributes
+            #* and then alphabetical
+            #my @attribute_names = sort {
+            #                             ($a->does('Documented') && $a->has_documentation_order ? $a->documentation_order : 1000) <=> ($b->does('Documented') && $b->has_documentation_order ? $b->documentation_order : 1000)
+            #                          || ($b->init_arg // 0) <=> ($a->init_arg // 0)
+            #                          || ($b->is_required || 0) <=> ($a->is_required || 0)
+            #                          ||  $a->name cmp $b->name
+            #                      }
+            #                      map { $self->classmeta->get_attribute($_) }
+            #                      $self->classmeta->get_attribute_list;
             my $content = '';
 
             ATTR:
-            foreach my $attr (@attribute_names) {
-
+            foreach my $attr (@wanted_attributes) {
                 next ATTR if $attr->does('Documented') && $attr->has_documentation_order && $attr->documentation_order == 0;
 
                 $content .= sprintf "\n=head2 %s\n", $attr->name;
@@ -194,6 +212,21 @@ sub transform_node {
             $child->content($content);
 
         }
+        if($action eq 'methods') {
+            my $content = '';
+
+            METHOD:
+            foreach my $method_name ($self->classmeta->get_method_list) {
+                my $method = $self->classmeta->get_method($method_name);
+                $content = sprintf "\n=head2 %s\n", $method->name;
+                my $prepared_method = $self->prepare_method($method);
+
+                foreach my $method_renderer ($self->all_method_renderers) {
+                    $content .= $method_renderer->render_method($prepared_method);
+                }
+            }
+            $child->content($content);
+        }
     }
 }
 sub prepare_attr {
@@ -206,6 +239,7 @@ sub prepare_attr {
         is_text => $self->is_text($attr),
         default => $attr->default,
         is_default_a_coderef => !!$attr->is_default_a_coderef(),
+        has_init_arg => defined $attr->init_arg ? 1 : 0,
         documentation_default => $attr->does('Documented') ? $attr->documentation_default : undef,
     };
 
@@ -231,7 +265,13 @@ sub prepare_method {
     my $positional_params = [];
     my $named_params = [];
 
-    return { map { $_ => [] } qw/positional_params named_params return_types/ } if !$method->signature;
+    my $try_signature = undef;
+
+    try {
+        $try_signature = $method->signature;
+    }
+    finally { };
+    return { map { $_ => [] } qw/positional_params named_params return_types/ } if !ref $try_signature;
 
     foreach my $param ($method->signature->positional_params) {
         push @$positional_params => {
