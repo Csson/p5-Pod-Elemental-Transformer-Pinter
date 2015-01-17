@@ -61,7 +61,7 @@ sub make_type_string {
         # cleanup and ensure some whitespace
         $type_constraint =~ s{\v}{}g;
         $type_constraint =~ s{\|}{ | }g;
-        $type_constraint =~ s{\[}{[ }g;
+        $type_constraint =~ s{\[}{ [ }g;
         $type_constraint =~ s{]}{ ]}g;
         return $type_constraint;
     }
