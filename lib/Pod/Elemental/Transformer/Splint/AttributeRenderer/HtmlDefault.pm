@@ -26,7 +26,10 @@ sub render_attribute {
     push @$items => $settings->{'type'} if defined $settings->{'type'};
     my $req_and_default = '';
 
-    if(!defined $settings->{'default'}) {
+    if(!$settings->{'has_init_arg'}) {
+        $req_and_default = 'not in constructor';
+    }
+    elsif(!defined $settings->{'default'}) {
         $req_and_default = $settings->{'required_text'};
     }
     elsif($settings->{'is_default_a_coderef'}) {
