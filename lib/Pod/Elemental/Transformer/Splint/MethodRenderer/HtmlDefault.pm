@@ -25,7 +25,7 @@ sub render_method {
 
     my @html = ();
     my $table_style = q{style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0"};
-    my $th_style = q{style="text-align: left; color: #444; background-color: #eee; font-weight: bold;"};
+    my $th_style = q{style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color:};
     my $tr_style = q{style="vertical-align: top;"};
 
     my $method_doc = undef;
@@ -34,8 +34,8 @@ sub render_method {
 
     if(scalar @$positional_params) {
 
-        my $fake_colspan = join '' => (qq{<td $th_style>&#160;</td>} x ($colspan - 1));
-        push @html => qq{<tr $tr_style><td $th_style>Positional parameters</td>$fake_colspan</tr>};
+        my $fake_colspan = join '' => (qq{<td $th_style #eee8e8;">&#160;</td>} x ($colspan - 1));
+        push @html => qq{<tr $tr_style><td $th_style #eee8e8;">Positional parameters</td>$fake_colspan</tr>};
 
         foreach my $param (@$positional_params) {
 
@@ -53,8 +53,8 @@ sub render_method {
     }
     if(scalar @$named_params) {
 
-        my $fake_colspan = join '' => (qq{<td $th_style>&#160;</td>} x ($colspan - 1));
-        push @html => qq{<tr $tr_style><td $th_style>Named parameters</td>$fake_colspan</tr>};
+        my $fake_colspan = join '' => (qq{<td $th_style #e8eee8;">&#160;</td>} x ($colspan - 1));
+        push @html => qq{<tr $tr_style><td $th_style #e8eee8;">Named parameters</td>$fake_colspan</tr>};
 
         foreach my $param (@$named_params) {
             $method_doc = $param->{'method_doc'} if defined $param->{'method_doc'};
@@ -70,8 +70,8 @@ sub render_method {
         }
     }
     if(scalar @$return_types) {
-        my $fake_colspan = join '' => (qq{<td $th_style>&#160;</td>} x ($colspan - 1));
-        push @html => qq{<tr $tr_style><td $th_style>Returns</td>$fake_colspan</tr>};
+        my $fake_colspan = join '' => (qq{<td $th_style #e8e8ee;">&#160;</td>} x ($colspan - 1));
+        push @html => qq{<tr $tr_style><td $th_style #e8e8ee;">Returns</td>$fake_colspan</tr>};
 
         foreach my $return_type (@$return_types) {
             $method_doc = $return_type->{'method_doc'} if defined $return_type->{'method_doc'};
