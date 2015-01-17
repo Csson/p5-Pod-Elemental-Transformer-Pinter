@@ -1,6 +1,6 @@
 language: perl
 perl:
-   - '5.10'
+   - '5.14'
    - '5.16'
 matrix:
    fast_finish: true

@@ -36,17 +36,19 @@
       },
       "runtime" : {
          "recommends" : {
-            "Kavorka::TraitFor::ReturnType::doc" : "0",
-            "MooseX::AttributeDocumented" : "0"
+            "Kavorka::TraitFor::Parameter::doc" : "0.1102",
+            "MooseX::AttributeDocumented" : "0.1003"
          },
          "requires" : {
             "List::AllUtils" : "0",
+            "List::UtilsBy" : "0",
             "Moose" : "0",
             "Moose::Role" : "0",
             "Path::Tiny" : "0",
             "Safe::Isa" : "0",
-            "Syntax::Feature::Qs" : "0",
-            "perl" : "5.010001",
+            "Syntax::Feature::Qs" : "0.2003",
+            "Try::Tiny" : "0",
+            "perl" : "5.014000",
             "syntax" : "0"
          }
       },
@@ -63,27 +65,27 @@
    "provides" : {
       "Pod::Elemental::Transformer::Splint" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint.pm",
-         "version" : "0.1100"
+         "version" : "0.1002"
       },
       "Pod::Elemental::Transformer::Splint::AttributeRenderer" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/AttributeRenderer.pm",
-         "version" : "0.1100"
+         "version" : "0.1002"
       },
       "Pod::Elemental::Transformer::Splint::AttributeRenderer::HtmlDefault" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/AttributeRenderer/HtmlDefault.pm",
-         "version" : "0.1100"
+         "version" : "0.1002"
       },
       "Pod::Elemental::Transformer::Splint::MethodRenderer" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/MethodRenderer.pm",
-         "version" : "0.1100"
+         "version" : "0.1002"
       },
       "Pod::Elemental::Transformer::Splint::MethodRenderer::HtmlDefault" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/MethodRenderer/HtmlDefault.pm",
-         "version" : "0.1100"
+         "version" : "0.1002"
       },
       "Pod::Elemental::Transformer::Splint::Util" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/Util.pm",
-         "version" : "0.1100"
+         "version" : "0.1002"
       }
    },
    "release_status" : "stable",
@@ -98,6 +100,6 @@
          "web" : "https://github.com/Csson/p5-Pod-Elemental-Transformer-Splint"
       }
    },
-   "version" : "0.1100"
+   "version" : "0.1002"
 }
 

@@ -1,4 +1,4 @@
-requires 'perl', '5.010001';
+requires 'perl', '5.014000';
 
 requires 'List::AllUtils';
 requires 'Moose';
@@ -6,10 +6,12 @@ requires 'Moose::Role';
 requires 'Path::Tiny';
 requires 'Safe::Isa';
 requires 'syntax';
-requires 'Syntax::Feature::Qs';
+requires 'Syntax::Feature::Qs', '0.2003';
+requires 'List::UtilsBy';
+requires 'Try::Tiny';
 
-recommends 'MooseX::AttributeDocumented';
-recommends 'Kavorka::TraitFor::ReturnType::doc';
+recommends 'MooseX::AttributeDocumented', '0.1003';
+recommends 'Kavorka::TraitFor::Parameter::doc', '0.1102';
 
 on test => sub {
     requires 'Test::More', '0.96';

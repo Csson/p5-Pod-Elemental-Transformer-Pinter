@@ -4,7 +4,7 @@ Pod::Elemental::Transformer::Splint - Documentation from class metadata
 
 # VERSION
 
-Version 0.1100, released 2015-01-17.
+Version 0.1002, released 2015-01-18.
 
 # SYNOPSIS
 
