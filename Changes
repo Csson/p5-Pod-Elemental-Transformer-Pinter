@@ -8,18 +8,29 @@ Revision history for Pod-Elemental-Transformer-Pinter
  [Documentation]
 
  [Enhancements]
- - Improved the order that attributes are rendered.
- - Improve output for method parameters that are hash or array refs, and have a default value.
- - Ensure whitespace before [ in type definitions for better legibility.
- - AttributeRenderer/HtmlDefault: Add a note if an attribute is not available in the constructor.
- - MethodRenderer/HtmlDefault: Use (mildly) different colours in the three headings
 
  [Meta]
 
  [New Features]
- - (Undocumented feature: ':splint methods' will try to render metadata on all methods.)
+
+ [Requirements]
 
  [Revision]
+
+0.1002 2015-01-18T00:37:18Z CET
+ [Enhancements]
+ - Improved the order that attributes are rendered.
+ - Improve output for method parameters that are hash or array refs, and
+   have a default value.
+ - Ensure whitespace before [ in type definitions for better legibility.
+ - AttributeRenderer/HtmlDefault: Add a note if an attribute is not
+   available in the constructor.
+ - MethodRenderer/HtmlDefault: Use (mildly) different colours in the three
+   headings
+
+ [New Features]
+ - (Undocumented feature: ':splint methods' will try to render metadata on
+   all methods.)
 
  [Requirements]
  - Added new requirements List::UtilsBy and Try::Tiny.

@@ -65,27 +65,27 @@
    "provides" : {
       "Pod::Elemental::Transformer::Splint" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint.pm",
-         "version" : "0.1002"
+         "version" : "0.1003"
       },
       "Pod::Elemental::Transformer::Splint::AttributeRenderer" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/AttributeRenderer.pm",
-         "version" : "0.1002"
+         "version" : "0.1003"
       },
       "Pod::Elemental::Transformer::Splint::AttributeRenderer::HtmlDefault" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/AttributeRenderer/HtmlDefault.pm",
-         "version" : "0.1002"
+         "version" : "0.1003"
       },
       "Pod::Elemental::Transformer::Splint::MethodRenderer" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/MethodRenderer.pm",
-         "version" : "0.1002"
+         "version" : "0.1003"
       },
       "Pod::Elemental::Transformer::Splint::MethodRenderer::HtmlDefault" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/MethodRenderer/HtmlDefault.pm",
-         "version" : "0.1002"
+         "version" : "0.1003"
       },
       "Pod::Elemental::Transformer::Splint::Util" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/Util.pm",
-         "version" : "0.1002"
+         "version" : "0.1003"
       }
    },
    "release_status" : "stable",
@@ -100,6 +100,6 @@
          "web" : "https://github.com/Csson/p5-Pod-Elemental-Transformer-Splint"
       }
    },
-   "version" : "0.1002"
+   "version" : "0.1003"
 }
 
