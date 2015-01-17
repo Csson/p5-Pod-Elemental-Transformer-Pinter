@@ -24,7 +24,7 @@ $pod5->transform_node($doc);
 $splint->transform_node($doc);
 
 unified_diff;
-eq_or_diff $doc->as_pod_string, test1(), 'good';
+eq_or_diff $doc->as_pod_string, test1(), 'Correct output for method';
 
 done_testing;
 
@@ -97,7 +97,7 @@ __END__
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
 <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">More arg<br /></td>
 </tr>
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">Named parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td></tr>
+<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">Named parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td></tr>
 <tr style="vertical-align: top;">
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>maybe =&gt; $value</code>
 
@@ -144,7 +144,7 @@ __END__
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thirsty</code>
 
 </td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a>[ <a href="https://metacpan.org/pod/Types::Standard#Int">Int</a> ]</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a> [ <a href="https://metacpan.org/pod/Types::Standard#Int">Int</a> ]</td>
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">slurpy</td>
 <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">slurper<br /></td>
