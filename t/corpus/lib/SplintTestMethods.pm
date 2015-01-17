@@ -7,6 +7,8 @@ class SplintTestMethods using Moose {
 
     method a_test_method(Int $thing!  does doc('The first argument') = '',
                          Int $woo!    does doc('More arg'),
+                         HashRef :$h  does doc('An empty hash ref') = {},
+                         ArrayRef :$a does doc('Non-empty array ref') = ['value'],
                          Bool :$maybe does doc("If necessary\nmethod_doc|Just a test")
                      --> Str          does doc('In the future')
     ) {

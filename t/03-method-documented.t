@@ -42,6 +42,8 @@ class SplintTestMethods using Moose {
 
     method a_test_method(Int $thing!  does doc('The first argument') = '',
                          Int $woo!    does doc('More arg'),
+                         HashRef :$h  does doc('An empty hash ref') = {},
+                         ArrayRef :$a does doc('Non-empty array ref') = ['value'],
                          Bool :$maybe does doc("If necessary\nmethod_doc|Just a test")
                      --> Str          does doc('In the future')
     ) {
@@ -71,7 +73,9 @@ __END__
 
 <p>Just a test</p>
 
+<!-- -->
 <table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
+
 <tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td></tr>
 <tr style="vertical-align: top;">
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thing</code>
@@ -98,6 +102,32 @@ __END__
 <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">More arg<br /></td>
 </tr>
 <tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">Named parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td></tr>
+<tr style="vertical-align: top;">
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>a =&gt; $value</code>
+
+</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a>
+
+</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= arrayref</code>
+
+</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Non-empty array ref</td>
+</tr>
+<tr style="vertical-align: top;">
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>h =&gt; $value</code>
+
+</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#HashRef">HashRef</a>
+
+</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= { }</code>
+
+</td>
+<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">An empty hash ref</td>
+</tr>
 <tr style="vertical-align: top;">
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>maybe =&gt; $value</code>
 
@@ -127,7 +157,9 @@ __END__
 
 <p></p>
 
+<!-- -->
 <table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
+
 <tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td></tr>
 <tr style="vertical-align: top;">
 <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$before</code>
