@@ -88,9 +88,9 @@ sub type_string_helper {
     my $self = shift;
     my $text = shift;
     my $type_library = shift;
-    my $place_on_page = shift;
+    my $anchor = shift;
 
-    return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $text, $type_library, $place_on_page);
+    return $self->parse_pod(sprintf 'L<%s|%s/"%s>', $text, $type_library, $anchor);
 }
 
 1;
