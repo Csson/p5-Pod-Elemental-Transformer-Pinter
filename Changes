@@ -1,4 +1,4 @@
-Revision history for Pod-Elemental-Transformer-Pinter
+Revision history for Pod-Elemental-Transformer-Splint
 
 {{$NEXT}}
  [API Changes]
@@ -9,13 +9,14 @@ Revision history for Pod-Elemental-Transformer-Pinter
 
  [Enhancements]
 
- [Meta]
+ [Other Changes]
+ - Converted to use latest Dist::Iller::Config::Author::CSSON
 
  [New Features]
 
  [Requirements]
 
- [Revision]
+ [Other Changes]
 
 0.1002 2015-01-18T00:37:18Z CET
  [Enhancements]
