@@ -1,4 +1,4 @@
-Revision history for Pod-Elemental-Transformer-Pinter
+Revision history for Pod-Elemental-Transformer-Splint
 
 {{$NEXT}}
  [API Changes]
@@ -14,12 +14,13 @@ Revision history for Pod-Elemental-Transformer-Pinter
  - AttributeRenderer/HtmlDefault: Add a note if an attribute is not available in the constructor.
  - MethodRenderer/HtmlDefault: Use (mildly) different colours in the three headings
 
- [Meta]
+ [Other Changes]
+ - Converted to use latest Dist::Iller::Config::Author::CSSON
 
  [New Features]
  - (Undocumented feature: ':splint methods' will try to render metadata on all methods.)
 
- [Revision]
+ [Other Changes]
 
  [Requirements]
  - Added new requirements List::UtilsBy and Try::Tiny.
