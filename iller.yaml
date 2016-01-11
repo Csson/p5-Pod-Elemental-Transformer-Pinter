@@ -14,7 +14,7 @@ prereqs:
       - Path::Tiny
       - Safe::Isa
       - syntax
-      - Syntax::Feature::Qs: 0.2002
+      - Syntax::Feature::Qs: 0.2003
       - List::UtilsBy
       - Try::Tiny
     recommends:
