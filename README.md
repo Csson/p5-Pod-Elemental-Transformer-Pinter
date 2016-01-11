@@ -2,11 +2,11 @@
 
 Pod::Elemental::Transformer::Splint - Documentation from class metadata
 
-![Requires Perl 5.14+](https://img.shields.io/badge/perl-5.14+-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint.svg?branch=master)](https://travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint)
+![Requires Perl 5.14](https://img.shields.io/badge/perl-5.14-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint.svg?branch=master)](https://travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint)
 
 # VERSION
 
-Version 0.1002, released 2016-01-11.
+Version 0.1003, released 2016-01-11.
 
 # SYNOPSIS
 

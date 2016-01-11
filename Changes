@@ -9,14 +9,17 @@ Revision history for Pod-Elemental-Transformer-Splint
 
  [Enhancements]
 
- [Other Changes]
- - Converted to use latest Dist::Iller::Config::Author::CSSON
-
  [New Features]
+
+ [Other Changes]
 
  [Requirements]
 
+ [Testing]
+
+0.1003 2016-01-11T21:39:31Z UTC
  [Other Changes]
+ - Converted to use latest Dist::Iller::Config::Author::CSSON
 
 0.1002 2015-01-18T00:37:18Z CET
  [Enhancements]
