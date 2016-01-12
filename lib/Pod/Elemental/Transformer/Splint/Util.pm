@@ -24,6 +24,7 @@ sub parse_pod {
 
     $results =~ s{</?p>}{}g;
     $results =~ s{https?://search\.cpan\.org/perldoc\?}{https://metacpan.org/pod/}g;
+    $results =~ s{[\v\h]*$}{};
     return $results;
 }
 
