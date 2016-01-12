@@ -2,11 +2,11 @@
 
 Pod::Elemental::Transformer::Splint - Documentation from class metadata
 
-![Requires Perl 5.14](https://img.shields.io/badge/perl-5.14-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint.svg?branch=master)](https://travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint)
+![Requires Perl 5.14+](https://img.shields.io/badge/perl-5.14+-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint.svg?branch=master)](https://travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint)
 
 # VERSION
 
-Version 0.1003, released 2016-01-11.
+Version 0.1004, released 2016-01-12.
 
 # SYNOPSIS
 
@@ -95,6 +95,61 @@ Will render like this (to html):
 _begin_
 
 _end_
+
+# ATTRIBUTES
+
+The following settings are available in `weaver.ini`:
+
+## command\_name
+
+Default: `:splint`
+
+Defines the command used at the beginning of the line in pod.
+
+## attribute\_renderer
+
+Default: `HTML=HtmlDefault, markdown=HtmlDefault`
+
+Define which renderers to use. Comma separated list of pairs where the key defines the format in pod and the value defines the renderer (in the `Pod::Elemental::Transformer::Splint::AttributeRenderer` namespace).
+
+The default will render each attribute like this:
+
+    =begin HTML
+
+    <!-- attribute information -->
+
+    =end HTML
+
+    =begin markdown
+
+    <!-- attribute information -->
+
+    =end markdown
+
+## method\_renderer
+
+Default: `HTML=HtmlDefault, markdown=HtmlDefault`
+
+Similar to ["attribute\_renderer"](#attribute_renderer) but for methods. This is currently only assumed to work for methods defined with [Kavorka](https://metacpan.org/pod/Kavorka) or [Moops](https://metacpan.org/pod/Moops).
+
+Method renderers are in the `Pod::Elemental::Transformer::Splint::MethodRenderer` namespace.
+
+## type\_libraries
+
+Default: `undef`
+
+If you use [Type::Tiny](https://metacpan.org/pod/Type::Tiny) based type libraries, the types are usually linked to the correct library. Under some circumstances it might be necessary to specify which library a certain type
+belongs to.
+
+It is a space separated list:
+
+    type_libraries = Custom::Types=AType Types::Standard=Str,Int
+
+## default\_type\_library
+
+Default: `Types::Standard`
+
+The default Type::Tiny based type library to link types to.
 
 # SEE ALSO
 

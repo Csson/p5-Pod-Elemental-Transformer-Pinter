@@ -67,22 +67,22 @@ sub render_attribute {
         my $number_of_cells_left_of_doc = scalar @$cells - 2;
 
         foreach my $doc_alt (@{ $documentation_alts }) {
-            my $row = [ ('<td>&#160;</td>') x $number_of_cells_left_of_doc ];
+            my $row = [ ('    <td>&#160;</td>') x $number_of_cells_left_of_doc ];
             push @{ $row } => $self->make_cell_without_border_right_aligned(nowrap => 0, text => $self->parse_pod(sprintf 'C<%s>:', $doc_alt->[0]) ),
                               $self->make_cell_extra_padded_without_border(nowrap => 0, text => $doc_alt->[1]);
             push @{ $rows } => $row;
         }
     }
 
-    my $table = '';
+    my @table = ();
     foreach my $row (@{ $rows }) {
-        $table .= '<tr>';
-        $table .= join "\n" => @{ $row };
-        $table .= '</tr>';
+        push @table => ('<tr>');
+        push @table => @{ $row };
+        push @table => ('</tr>');
     }
 
     my $content =  sprintf qs{
-        =begin HTML
+        =begin %s
 
             <table cellpadding="0" cellspacing="0">
                 %s
@@ -90,8 +90,8 @@ sub render_attribute {
 
             <p>%s</p>
 
-        =end HTML
-    }, $table, $documentation // '';
+        =end %s
+    }, $self->for, join ("\n" => @table), ($documentation // ''), $self->for;
 
     return $content;
 }
@@ -102,7 +102,7 @@ sub make_cell_without_border {
     my $text = $args{'text'};
     my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
 
-    return qq{<td style="padding-left: 6px; padding-right: 6px;$nowrap">$text</td>};
+    return qq{    <td style="padding-left: 6px; padding-right: 6px;$nowrap">$text</td>};
 }
 sub make_cell_extra_padded_without_border {
     my $self = shift;
@@ -110,7 +110,7 @@ sub make_cell_extra_padded_without_border {
     my $text = $args{'text'};
     my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
 
-    return qq{<td style="padding-left: 12px;$nowrap">$text</td>};
+    return qq{    <td style="padding-left: 12px;$nowrap">$text</td>};
 }
 sub make_cell_with_border {
     my $self = shift;
@@ -118,7 +118,7 @@ sub make_cell_with_border {
     my $text = $args{'text'};
     my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
 
-    return qq{<td style="padding-right: 6px; padding-left: 6px; border-right: 1px solid #b8b8b8;$nowrap">$text</td>};
+    return qq{    <td style="padding-right: 6px; padding-left: 6px; border-right: 1px solid #b8b8b8;$nowrap">$text</td>};
 }
 sub make_cell_without_border_right_aligned {
     my $self = shift;
@@ -126,7 +126,7 @@ sub make_cell_without_border_right_aligned {
     my $text = $args{'text'};
     my $nowrap = !$args{'nowrap'} ? '' : ' white-space: nowrap;';
 
-    return qq{<td style="text-align: right; padding-right: 6px; padding-left: 6px;$nowrap">$text</td>};
+    return qq{    <td style="text-align: right; padding-right: 6px; padding-left: 6px;$nowrap">$text</td>};
 }
 
 1;

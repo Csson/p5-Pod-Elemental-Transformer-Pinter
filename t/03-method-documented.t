@@ -23,7 +23,7 @@ my $doc = Pod::Elemental->read_file('t/corpus/lib/SplintTestMethods.pm');
 $pod5->transform_node($doc);
 $splint->transform_node($doc);
 
-unified_diff;
+#unified_diff;
 eq_or_diff $doc->as_pod_string, test1(), 'Correct output for method';
 
 done_testing;
@@ -76,79 +76,146 @@ __END__
 <!-- -->
 <table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
 
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td></tr>
 <tr style="vertical-align: top;">
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thing</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required, default <code>= &#39;&#39;</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">The first argument<br /></td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
 </tr>
 <tr style="vertical-align: top;">
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$woo</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">More arg<br /></td>
-</tr>
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">Named parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td></tr>
-<tr style="vertical-align: top;">
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>a =&gt; $value</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= arrayref</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Non-empty array ref</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thing</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required, default <code>= &#39;&#39;</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">The first argument<br /></td>
 </tr>
 <tr style="vertical-align: top;">
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>h =&gt; $value</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#HashRef">HashRef</a>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= { }</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">An empty hash ref</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$woo</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">More arg<br /></td>
 </tr>
 <tr style="vertical-align: top;">
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>maybe =&gt; $value</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, <span style="color: #999;">no default</span></td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">If necessary</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">Named parameters</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td>
 </tr>
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">Returns</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td></tr>
 <tr style="vertical-align: top;">
-<td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a>
-
-</td><td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td><td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td><td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td>
-<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">In the future</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>a =&gt; $value</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= arrayref</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Non-empty array ref</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>h =&gt; $value</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#HashRef">HashRef</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= { }</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">An empty hash ref</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>maybe =&gt; $value</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, <span style="color: #999;">no default</span></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">If necessary</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">Returns</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">In the future</td>
 </tr>
 </table>
 
 =end HTML
+
+=begin markdown
+
+<p>Just a test</p>
+
+<!-- -->
+<table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
+
+<tr style="vertical-align: top;">
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thing</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required, default <code>= &#39;&#39;</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">The first argument<br /></td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$woo</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">More arg<br /></td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">Named parameters</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8eee8;">&#160;</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>a =&gt; $value</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= arrayref</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">Non-empty array ref</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>h =&gt; $value</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#HashRef">HashRef</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, default <code>= { }</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">An empty hash ref</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>maybe =&gt; $value</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Bool">Bool</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">optional, <span style="color: #999;">no default</span></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">If necessary</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">Returns</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #e8e8ee;">&#160;</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Str">Str</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee;  padding: 3px 6px; border-bottom: 1px solid #eee;">&#160;</td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">In the future</td>
+</tr>
+</table>
+
+=end markdown
 
 
 =head2 another
@@ -160,30 +227,62 @@ __END__
 <!-- -->
 <table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
 
-<tr style="vertical-align: top;"><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td><td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td></tr>
 <tr style="vertical-align: top;">
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$before</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
-<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">whooo<br /></td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
 </tr>
 <tr style="vertical-align: top;">
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thirsty</code>
-
-</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a> [ <a href="https://metacpan.org/pod/Types::Standard#Int">Int</a> ]</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
-<td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">slurpy</td>
-<td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">slurper<br /></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$before</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">whooo<br /></td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thirsty</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a> [ <a href="https://metacpan.org/pod/Types::Standard#Int">Int</a> ]</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">slurpy</td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">slurper<br /></td>
 </tr>
 </table>
 
 =end HTML
+
+=begin markdown
+
+<p></p>
+
+<!-- -->
+<table style="margin-bottom: 10px; margin-left: 10px; border-collapse: bollapse;" cellpadding="0" cellspacing="0">
+
+<tr style="vertical-align: top;">
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">Positional parameters</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+    <td style="text-align: left; color: #444; padding-left: 5px; font-weight: bold; background-color: #eee8e8;">&#160;</td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$before</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#Int">Int</a></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  border-bottom: 1px solid #eee;"></td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">whooo<br /></td>
+</tr>
+<tr style="vertical-align: top;">
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><code>$thirsty</code></td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;"><a href="https://metacpan.org/pod/Types::Standard#ArrayRef">ArrayRef</a> [ <a href="https://metacpan.org/pod/Types::Standard#Int">Int</a> ]</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">required</td>
+    <td style="vertical-align: top; border-right: 1px solid #eee; white-space: nowrap;  padding: 3px 6px; border-bottom: 1px solid #eee;">slurpy</td>
+    <td style="padding: 3px 6px; vertical-align: top;  border-bottom: 1px solid #eee;">slurper<br /></td>
+</tr>
+</table>
+
+=end markdown
 
 =cut
 };

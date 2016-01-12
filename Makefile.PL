@@ -19,12 +19,15 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "List::AllUtils" => 0,
     "List::UtilsBy" => 0,
+    "Module::Load" => 0,
     "Moose" => "2.00",
     "Moose::Role" => "2.00",
     "Path::Tiny" => 0,
+    "Ref::Util" => "0.007",
     "Safe::Isa" => 0,
     "Syntax::Feature::Qs" => "0.2003",
     "Try::Tiny" => 0,
+    "Types::Standard" => 0,
     "syntax" => 0
   },
   "TEST_REQUIRES" => {
@@ -36,7 +39,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.96",
     "Test::Warnings" => 0
   },
-  "VERSION" => "0.1003",
+  "VERSION" => "0.1004",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -48,17 +51,20 @@ my %FallbackPrereqs = (
   "File::Spec" => 0,
   "List::AllUtils" => 0,
   "List::UtilsBy" => 0,
+  "Module::Load" => 0,
   "Moose" => "2.00",
   "Moose::Role" => "2.00",
   "Path::Tiny" => 0,
   "Pod::Elemental" => 0,
   "Pod::Elemental::Transformer::Pod5" => 0,
+  "Ref::Util" => "0.007",
   "Safe::Isa" => 0,
   "Syntax::Feature::Qs" => "0.2003",
   "Test::Differences" => 0,
   "Test::More" => "0.96",
   "Test::Warnings" => 0,
   "Try::Tiny" => 0,
+  "Types::Standard" => 0,
   "syntax" => 0
 );
 

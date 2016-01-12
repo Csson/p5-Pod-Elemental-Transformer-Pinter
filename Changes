@@ -2,18 +2,26 @@ Revision history for Pod-Elemental-Transformer-Splint
 
 {{$NEXT}}
  [API Changes]
+  - Breaking change: html_attribute_renderer is replaced by attribute_renderer.
+  - Breaking change: html_method_renderer is replaced by method_renderer.
 
  [Bug Fixes]
 
  [Documentation]
+  - Document weaver.ini configuration options.
 
  [Enhancements]
 
  [New Features]
+  - The new render settings in weaver.ini makes it possible to render to many formats.
 
  [Other Changes]
+  - ::HtmlRenderer: Minor improvements to rendered html.
 
  [Requirements]
+  - New prereq: Module::Load
+  - New prereq: Types::Standard
+  - New prereq: Ref::Util
 
  [Testing]
 
