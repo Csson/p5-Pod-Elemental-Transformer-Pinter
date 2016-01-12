@@ -34,8 +34,8 @@ sub render_method {
 
     if(scalar @$positional_params) {
 
-        my $fake_colspan = join '' => (qq{<td $th_style #eee8e8;">&#160;</td>} x ($colspan - 1));
-        push @html => qq{<tr $tr_style><td $th_style #eee8e8;">Positional parameters</td>$fake_colspan</tr>};
+        my @fake_colspans = (qq{    <td $th_style #eee8e8;">&#160;</td>}) x ($colspan - 1);
+        push @html => (qq{<tr $tr_style>}, qq{    <td $th_style #eee8e8;">Positional parameters</td>}, @fake_colspans, '</tr>');
 
         foreach my $param (@$positional_params) {
 
@@ -53,8 +53,8 @@ sub render_method {
     }
     if(scalar @$named_params) {
 
-        my $fake_colspan = join '' => (qq{<td $th_style #e8eee8;">&#160;</td>} x ($colspan - 1));
-        push @html => qq{<tr $tr_style><td $th_style #e8eee8;">Named parameters</td>$fake_colspan</tr>};
+        my @fake_colspans = (qq{    <td $th_style #e8eee8;">&#160;</td>}) x ($colspan - 1);
+        push @html => (qq{<tr $tr_style>}, qq{    <td $th_style #e8eee8;">Named parameters</td>}, @fake_colspans, '</tr>');
 
         foreach my $param (@$named_params) {
             $method_doc = $param->{'method_doc'} if defined $param->{'method_doc'};
@@ -70,8 +70,8 @@ sub render_method {
         }
     }
     if(scalar @$return_types) {
-        my $fake_colspan = join '' => (qq{<td $th_style #e8e8ee;">&#160;</td>} x ($colspan - 1));
-        push @html => qq{<tr $tr_style><td $th_style #e8e8ee;">Returns</td>$fake_colspan</tr>};
+        my @fake_colspans = (qq{    <td $th_style #e8e8ee;">&#160;</td>}) x ($colspan - 1);
+        push @html => (qq{<tr $tr_style>}, qq{    <td $th_style #e8e8ee;">Returns</td>}, @fake_colspans, '</tr>');
 
         foreach my $return_type (@$return_types) {
             $method_doc = $return_type->{'method_doc'} if defined $return_type->{'method_doc'};
@@ -92,14 +92,14 @@ sub render_method {
     }
 
     my $content = sprintf qs{
-        =begin HTML
+        =begin %s
 
             <p>%s</p>
 
             %s
 
-        =end HTML
-    }, $method_doc // '', join "\n" => map { qqs{$_} } @html;
+        =end %s
+    }, $self->for, $method_doc // '', join ("\n" => @html), $self->for;
 
     return $content;
 }
@@ -155,9 +155,9 @@ sub make_cell_without_border {
     $text = defined $text ? $text : '';
 
     my $style = qq{style="padding: 3px 6px; vertical-align: top; $nowrap border-bottom: 1px solid #eee;"};
-    my $colspans = join '' => (qq{<td $style>&#160;</td>} x $colspan);
+    my @colspans = (qq{    <td $style>&#160;</td>}) x $colspan;
 
-    return qq{<td $style>$text</td>$colspans};
+    return (qq{    <td $style>$text</td>}, @colspans);
 }
 sub make_cell_with_border {
     my $self = shift;
@@ -167,9 +167,9 @@ sub make_cell_with_border {
     $text = defined $text ? $text : '';
 
     my $style = qq{style="vertical-align: top; border-right: 1px solid #eee;$nowrap $padding border-bottom: 1px solid #eee;"};
-    my $colspans = join '' => (qq{<td $style>&#160;</td>} x $colspan);
+    my @colspans = (qq{    <td $style>&#160;</td>}) x $colspan;
 
-    return qq{<td $style>$text</td>$colspans};
+    return (qq{    <td $style>$text</td>}, @colspans);
 }
 
 sub fix_cell_args {
