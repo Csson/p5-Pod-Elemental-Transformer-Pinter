@@ -12,23 +12,27 @@ use Path::Tiny;
 use Safe::Isa;
 use Try::Tiny;
 use List::UtilsBy 'extract_by';
+use Types::Standard qw/Str ArrayRef HashRef/;
+use Module::Load qw/load/;
+use Ref::Util qw/is_arrayref/;
 use lib 'lib';
+
 with qw/Pod::Elemental::Transformer Pod::Elemental::Transformer::Splint::Util/;
 
 has command_name => (
     is => 'rw',
-    isa => 'Str',
+    isa => Str,
     default => ':splint',
 );
 has default_type_library => (
     is => 'rw',
-    isa => 'Str',
+    isa => Str,
     default => 'Types::Standard',
     predicate => 'has_default_type_library',
 );
 has type_libraries => (
     is => 'rw',
-    isa => 'HashRef',
+    isa => HashRef,
     traits => ['Hash'],
     handles => {
         get_library_for_type => 'get',
@@ -38,44 +42,35 @@ has classmeta => (
     is => 'rw',
     predicate => 'has_classmeta',
 );
-has html_attribute_renderer => (
+has attribute_renderer => (
     is => 'rw',
-    isa => 'Str',
-    default => 'HtmlDefault',
-);
-#has text_attribute_renderer => (
-#    is => 'rw',
-#    isa => 'Str',
-#    default => '0',
-#);
-has html_method_renderer => (
-    is => 'rw',
-    isa => 'Str',
-    default => 'HtmlDefault',
-);
-#has text_method_renderer => (
-#    is => 'rw',
-#    isa => 'Str',
-#    default => '0',
-#);
-has attribute_renderers => (
-    is => 'rw',
-    isa => 'ArrayRef',
-    traits => ['Array'],
+    isa => ArrayRef[HashRef[Str]],
+    traits => [qw/Array/],
+    default => sub {
+        [
+            { for => 'HTML', class => 'HtmlDefault' },
+            { for => 'markdown', class => 'HtmlDefault' },
+        ],
+    },
     handles => {
-        add_attribute_renderer => 'push',
         all_attribute_renderers => 'elements',
     }
 );
-has method_renderers => (
+has method_renderer => (
     is => 'rw',
-    isa => 'ArrayRef',
-    traits => ['Array'],
+    isa => ArrayRef[HashRef[Str]],
+    traits => [qw/Array/],
+    default => sub {
+        [
+            { for => 'HTML', class => 'HtmlDefault' },
+            { for => 'markdown', class => 'HtmlDefault' },
+        ],
+    },
     handles => {
-        add_method_renderer => 'push',
         all_method_renderers => 'elements',
     }
 );
+
 around BUILDARGS => sub {
     my $orig = shift;
     my $class = shift;
@@ -100,6 +95,30 @@ around BUILDARGS => sub {
         }
     }
     $args->{'type_libraries'} = $type_libraries;
+
+    my $attribute_renderers = [];
+    my $method_renderers = [];
+
+
+    if(exists $args->{'attribute_renderer'}) {
+        my @renderers = split m{,\s+}, $args->{'attribute_renderer'};
+
+        for my $renderer (@renderers) {
+            my($format, $class) = split m/=/, $renderer;
+            push @{ $attribute_renderers } => { for => $format, class => $class };
+        }
+        $args->{'attribute_renderer'} = $attribute_renderers;
+    }
+    if(exists $args->{'method_renderer'}) {
+        my @renderers = split m{,\s+}, $args->{'method_renderer'};
+
+        for my $renderer (@renderers) {
+            my($format, $class) = split m/=/, $renderer;
+            $renderer = { for => $format, class => $class };
+            push @{ $method_renderers } => { for => $format, class => $class };
+        }
+        $args->{'method_renderer'} = $method_renderers;
+    }
     $class->$orig($args);
 };
 
@@ -110,23 +129,25 @@ sub BUILD {
 
     TYPE:
     foreach my $type (qw/attribute method/) {
+        my $all_method = sprintf 'all_%s_renderers', $type;
 
         RENDERER:
-        foreach my $output (qw/html/) {
-            my $accessor = sprintf '%s_%s_renderer', $output, $type;
-            my $class = sprintf '%s::%sRenderer::%s', $base, ucfirst $type, $self->$accessor;
+        foreach my $renderer ($self->$all_method) {
+            my $role = sprintf '%s::%sRenderer', $base, ucfirst $type;
+            my $classname = sprintf '%s::%s', $role, $renderer->{'class'};
 
-            next RENDERER if $self->$accessor eq '0';
-            eval "use $class";
-            die "Can't use $class as renderer: $@" if $@;
+            try {
+                load $classname;
+            }
+            catch {
+                die "Can't use $classname as renderer: $_";
+            };
 
-            my $wanted_role = sprintf '%s::%sRenderer', $base, ucfirst $type;
-            if(!$class->does($wanted_role)) {
-                die "$class doesn't do the $wanted_role role";
+            if(!$classname->does($role)) {
+                die "$classname doesn't do the $role role";
             }
 
-            my $add_method = sprintf 'add_%s_renderer', $type;
-            $self->$add_method($class->new);
+            $renderer->{'renderer'} = $classname->new(for => $renderer->{'for'});
         }
     }
 }
@@ -189,7 +210,7 @@ sub transform_node {
                 $content .= sprintf "\n=head2 %s\n", $attr->name;
                 my $prepared_attr = $self->prepare_attr($attr);
                 foreach my $attribute_renderer ($self->all_attribute_renderers) {
-                    $content .= $attribute_renderer->render_attribute($prepared_attr);
+                    $content .= $attribute_renderer->{'renderer'}->render_attribute($prepared_attr);
                 }
 
             }
@@ -207,7 +228,7 @@ sub transform_node {
             my $prepared_method = $self->prepare_method($method);
 
             foreach my $method_renderer ($self->all_method_renderers) {
-                $content .= $method_renderer->render_method($prepared_method);
+                $content .= $method_renderer->{'renderer'}->render_method($prepared_method);
             }
             $child->content($content);
 
@@ -568,6 +589,64 @@ I<begin>
 =end HTML
 
 I<end>
+
+=head1 ATTRIBUTES
+
+The following settings are available in C<weaver.ini>:
+
+=head2 command_name
+
+Default: C<:splint>
+
+Defines the command used at the beginning of the line in pod.
+
+=head2 attribute_renderer
+
+Default: C<HTML=HtmlDefault, markdown=HtmlDefault>
+
+Define which renderers to use. Comma separated list of pairs where the key defines the format in pod and the value defines the renderer (in the C<Pod::Elemental::Transformer::Splint::AttributeRenderer> namespace).
+
+The default will render each attribute like this:
+
+    =begin HTML
+
+    <!-- attribute information -->
+
+    =end HTML
+
+    =begin markdown
+
+    <!-- attribute information -->
+
+    =end markdown
+
+
+=head2 method_renderer
+
+Default: C<HTML=HtmlDefault, markdown=HtmlDefault>
+
+Similar to L</attribute_renderer> but for methods. This is currently only assumed to work for methods defined with L<Kavorka> or L<Moops>.
+
+Method renderers are in the C<Pod::Elemental::Transformer::Splint::MethodRenderer> namespace.
+
+=head2 type_libraries
+
+Default: C<undef>
+
+If you use L<Type::Tiny> based type libraries, the types are usually linked to the correct library. Under some circumstances it might be necessary to specify which library a certain type
+belongs to.
+
+It is a space separated list:
+
+    type_libraries = Custom::Types=AType Types::Standard=Str,Int
+
+=head2 default_type_library
+
+Default: C<Types::Standard>
+
+The default Type::Tiny based type library to link types to.
+
+
 
 =head1 SEE ALSO
 
