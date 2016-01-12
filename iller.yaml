@@ -17,6 +17,9 @@ prereqs:
       - Syntax::Feature::Qs: 0.2003
       - List::UtilsBy
       - Try::Tiny
+      - Types::Standard
+      - Module::Load
+      - Ref::Util: 0.007
     recommends:
       - MooseX::AttributeDocumented: 0.1003
       - Kavorka::TraitFor::Parameter::doc: 0.1102
