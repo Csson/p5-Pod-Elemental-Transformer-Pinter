@@ -5,7 +5,7 @@ use Test::More;
 use Test::Differences;
 
 use if $ENV{'AUTHOR_TESTING'}, 'Test::Warnings';
-plan skip_all => 'These tests require Perl 5.14+, Moops and Kavorka::TraitFor::ReturnType::doc' if $] < 5.014000;
+plan skip_all => 'These tests require Perl 5.14+, Moops and Kavorka::TraitFor::Parameter::doc' if $] < 5.014000;
 use lib('t/corpus/lib');
 use Pod::Elemental;
 use Pod::Elemental::Transformer::Pod5;
@@ -13,8 +13,8 @@ use Pod::Elemental::Transformer::Splint;
 
 eval "use Moops";
 plan skip_all => 'These tests need Moops' if $@;
-eval "use Kavorka::TraitFor::ReturnType::doc";
-plan skip_all => 'These tests need Kavorka::TraitFor::ReturnType::doc' if $@;
+eval "use Kavorka::TraitFor::Parameter::doc";
+plan skip_all => 'These tests need Kavorka::TraitFor::Parameter::doc' if $@;
 
 my $pod5 = Pod::Elemental::Transformer::Pod5->new;
 my $splint = Pod::Elemental::Transformer::Splint->new;
