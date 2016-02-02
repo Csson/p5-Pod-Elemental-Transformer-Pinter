@@ -5,6 +5,7 @@ use Test::More;
 use Test::Differences;
 
 use if $ENV{'AUTHOR_TESTING'}, 'Test::Warnings';
+plan skip_all => 'These tests require Perl 5.14+, Moops and Kavorka::TraitFor::ReturnType::doc' if $] < 5.014000;
 use lib('t/corpus/lib');
 use Pod::Elemental;
 use Pod::Elemental::Transformer::Pod5;

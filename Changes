@@ -14,6 +14,8 @@ Revision history for Pod-Elemental-Transformer-Splint
  [Other Changes]
 
  [Requirements]
+  - Now works 5.10+ (skips tests that require 5.14).
+  - Kavorka::TraitFor::ReturnType::doc downgraded from recommends to suggests.
 
  [Testing]
 
