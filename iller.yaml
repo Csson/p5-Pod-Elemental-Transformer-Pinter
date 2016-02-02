@@ -23,6 +23,7 @@ prereqs:
       - Ref::Util: 0.007
     recommends:
       - MooseX::AttributeDocumented: 0.1003
+    suggests:
       - Kavorka::TraitFor::Parameter::doc: 0.1102
   test:
     requires:
