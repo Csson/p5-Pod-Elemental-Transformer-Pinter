@@ -1,4 +1,4 @@
-use 5.14.0;
+use 5.10.1;
 use strict;
 use warnings;
 
@@ -8,6 +8,7 @@ package Pod::Elemental::Transformer::Splint;
 # ABSTRACT: Documentation from class metadata
 
 use Moose;
+use namespace::autoclean;
 use Path::Tiny;
 use Safe::Isa;
 use Try::Tiny;
@@ -393,6 +394,8 @@ sub is_text {
 
     return $attr->has_write_method ? 'read/write' : 'read-only';
 }
+
+__PACKAGE__->meta->make_immutable;
 
 1;
 

@@ -1,4 +1,4 @@
-use 5.14.0;
+use 5.10.1;
 use strict;
 use warnings;
 
@@ -8,6 +8,7 @@ package Pod::Elemental::Transformer::Splint::MethodRenderer::HtmlDefault;
 # ABSTRACT: Default html method renderer
 
 use Moose;
+use namespace::autoclean;
 use Path::Tiny;
 use Pod::Simple::XHTML;
 use List::AllUtils qw/any uniq/;
@@ -182,5 +183,7 @@ sub fix_cell_args {
 
     return ($text, $nowrap, $colspan);
 }
+
+__PACKAGE__->meta->make_immutable;
 
 1;

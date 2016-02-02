@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use 5.014000;
+use 5.010001;
 
 use ExtUtils::MakeMaker;
 
@@ -14,7 +14,7 @@ my %WriteMakefileArgs = (
   },
   "DISTNAME" => "Pod-Elemental-Transformer-Splint",
   "LICENSE" => "perl",
-  "MIN_PERL_VERSION" => "5.014000",
+  "MIN_PERL_VERSION" => "5.010001",
   "NAME" => "Pod::Elemental::Transformer::Splint",
   "PREREQ_PM" => {
     "List::AllUtils" => 0,
@@ -28,18 +28,21 @@ my %WriteMakefileArgs = (
     "Syntax::Feature::Qs" => "0.2003",
     "Try::Tiny" => 0,
     "Types::Standard" => 0,
+    "namespace::autoclean" => 0,
     "syntax" => 0
   },
   "TEST_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
     "Pod::Elemental" => 0,
     "Pod::Elemental::Transformer::Pod5" => 0,
     "Test::Differences" => 0,
     "Test::More" => "0.96",
     "Test::Warnings" => 0
   },
-  "VERSION" => "0.1100",
+  "VERSION" => "0.1101",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -49,6 +52,8 @@ my %WriteMakefileArgs = (
 my %FallbackPrereqs = (
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
+  "IO::Handle" => 0,
+  "IPC::Open3" => 0,
   "List::AllUtils" => 0,
   "List::UtilsBy" => 0,
   "Module::Load" => 0,
@@ -65,6 +70,7 @@ my %FallbackPrereqs = (
   "Test::Warnings" => 0,
   "Try::Tiny" => 0,
   "Types::Standard" => 0,
+  "namespace::autoclean" => 0,
   "syntax" => 0
 );
 

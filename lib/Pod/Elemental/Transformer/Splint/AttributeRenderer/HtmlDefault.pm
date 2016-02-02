@@ -1,4 +1,4 @@
-use 5.14.0;
+use 5.10.1;
 use strict;
 use warnings;
 
@@ -8,6 +8,7 @@ package Pod::Elemental::Transformer::Splint::AttributeRenderer::HtmlDefault;
 # ABSTRACT: Default html attribute renderer
 
 use Moose;
+use namespace::autoclean;
 use Path::Tiny;
 use Pod::Simple::XHTML;
 use syntax 'qs';
@@ -128,5 +129,7 @@ sub make_cell_without_border_right_aligned {
 
     return qq{    <td style="text-align: right; padding-right: 6px; padding-left: 6px;$nowrap">$text</td>};
 }
+
+__PACKAGE__->meta->make_immutable;
 
 1;
