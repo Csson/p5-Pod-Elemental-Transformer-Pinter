@@ -2,11 +2,11 @@
 
 Pod::Elemental::Transformer::Splint - Documentation from class metadata
 
-![Requires Perl 5.10.1+](https://img.shields.io/badge/perl-5.10.1+-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint.svg?branch=master)](https://travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint) ![coverage 81.3%](https://img.shields.io/badge/coverage-81.3%-orange.svg)
+![Requires Perl 5.10.1+](https://img.shields.io/badge/perl-5.10.1+-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint.svg?branch=master)](https://travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint) ![coverage 81.4%](https://img.shields.io/badge/coverage-81.4%-orange.svg)
 
 # VERSION
 
-Version 0.1101, released 2016-02-02.
+Version 0.1201, released 2016-02-03.
 
 # SYNOPSIS
 
@@ -150,8 +150,6 @@ It is a space separated list:
 Default: `Types::Standard`
 
 The default Type::Tiny based type library to link types to.
-
-# SEE ALSO
 
 # SOURCE
 

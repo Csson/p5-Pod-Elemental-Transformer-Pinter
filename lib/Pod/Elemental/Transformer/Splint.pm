@@ -649,8 +649,4 @@ Default: C<Types::Standard>
 
 The default Type::Tiny based type library to link types to.
 
-
-
-=head1 SEE ALSO
-
 =cut

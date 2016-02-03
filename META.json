@@ -105,11 +105,12 @@
             "MooseX::AttributeDocumented" : "0.1003"
          },
          "requires" : {
-            "List::AllUtils" : "0",
+            "List::MoreUtils" : "0",
+            "List::Util" : "0",
             "List::UtilsBy" : "0",
             "Module::Load" : "0",
             "Moose" : "2.00",
-            "Moose::Role" : "2.00",
+            "Moose::Role" : "2.1400",
             "Path::Tiny" : "0",
             "Ref::Util" : "0.007",
             "Safe::Isa" : "0",
@@ -144,27 +145,27 @@
    "provides" : {
       "Pod::Elemental::Transformer::Splint" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint.pm",
-         "version" : "0.1101"
+         "version" : "0.1201"
       },
       "Pod::Elemental::Transformer::Splint::AttributeRenderer" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/AttributeRenderer.pm",
-         "version" : "0.1101"
+         "version" : "0.1201"
       },
       "Pod::Elemental::Transformer::Splint::AttributeRenderer::HtmlDefault" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/AttributeRenderer/HtmlDefault.pm",
-         "version" : "0.1101"
+         "version" : "0.1201"
       },
       "Pod::Elemental::Transformer::Splint::MethodRenderer" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/MethodRenderer.pm",
-         "version" : "0.1101"
+         "version" : "0.1201"
       },
       "Pod::Elemental::Transformer::Splint::MethodRenderer::HtmlDefault" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/MethodRenderer/HtmlDefault.pm",
-         "version" : "0.1101"
+         "version" : "0.1201"
       },
       "Pod::Elemental::Transformer::Splint::Util" : {
          "file" : "lib/Pod/Elemental/Transformer/Splint/Util.pm",
-         "version" : "0.1101"
+         "version" : "0.1201"
       }
    },
    "release_status" : "stable",
@@ -179,6 +180,6 @@
          "web" : "https://github.com/Csson/p5-Pod-Elemental-Transformer-Splint"
       }
    },
-   "version" : "0.1101"
+   "version" : "0.1201"
 }
 

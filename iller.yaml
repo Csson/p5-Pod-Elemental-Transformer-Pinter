@@ -10,8 +10,9 @@ prereqs:
       - perl: 5.010001
       - Moose: 2.00
       - namespace::autoclean
-      - Moose::Role: 2.00
-      - List::AllUtils
+      - Moose::Role: 2.1400
+      - List::Util
+      - List::MoreUtils
       - Path::Tiny
       - Safe::Isa
       - syntax
@@ -32,7 +33,6 @@ prereqs:
       - Test::Differences
       - Pod::Elemental
       - Pod::Elemental::Transformer::Pod5
-
 
 plugins:
  - +config: Author::CSSON

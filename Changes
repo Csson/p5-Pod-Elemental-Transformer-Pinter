@@ -6,6 +6,7 @@ Revision history for Pod-Elemental-Transformer-Splint
  [Bug Fixes]
 
  [Documentation]
+  - Remove empty section.
 
  [Enhancements]
 
@@ -14,10 +15,15 @@ Revision history for Pod-Elemental-Transformer-Splint
  [Other Changes]
 
  [Requirements]
-  - Now works 5.10+ (skips tests that require 5.14).
-  - Kavorka::TraitFor::ReturnType::doc downgraded from recommends to suggests.
+  - Require List::Util+List::MoreUtils instead of List::AllUtils.
 
  [Testing]
+
+0.1200 2016-02-02T21:11:41Z UTC
+ [Requirements]
+ - Now works 5.10+ (skips tests that require 5.14).
+ - Kavorka::TraitFor::Parameter::doc downgraded from recommends to
+   suggests.
 
 0.1100 2016-01-12T22:17:40Z UTC
  [API Changes]

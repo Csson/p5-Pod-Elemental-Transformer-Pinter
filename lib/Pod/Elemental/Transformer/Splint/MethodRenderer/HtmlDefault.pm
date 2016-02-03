@@ -11,7 +11,8 @@ use Moose;
 use namespace::autoclean;
 use Path::Tiny;
 use Pod::Simple::XHTML;
-use List::AllUtils qw/any uniq/;
+use List::Util qw/any/;
+use List::MoreUtils qw/uniq/;
 use syntax 'qs';
 
 with 'Pod::Elemental::Transformer::Splint::MethodRenderer';
