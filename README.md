@@ -2,11 +2,18 @@
 
 Pod::Elemental::Transformer::Splint - Documentation from class metadata
 
-![Requires Perl 5.10.1+](https://img.shields.io/badge/perl-5.10.1+-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint.svg?branch=master)](https://travis-ci.org/Csson/p5-Pod-Elemental-Transformer-Splint) ![coverage 81.4%](https://img.shields.io/badge/coverage-81.4%-orange.svg)
+<div>
+    <p>
+    <img src="https://img.shields.io/badge/perl-5.10.1+-blue.svg" alt="Requires Perl 5.10.1+" />
+    <a href="http://cpants.cpanauthors.org/release/CSSON/Pod-Elemental-Transformer-Splint-0.1202"><img src="http://badgedepot.code301.com/badge/kwalitee/CSSON/Pod-Elemental-Transformer-Splint/0.1202" alt="Distribution kwalitee" /></a>
+    <a href="http://matrix.cpantesters.org/?dist=Pod-Elemental-Transformer-Splint%200.1202"><img src="http://badgedepot.code301.com/badge/cpantesters/Pod-Elemental-Transformer-Splint/0.1202" alt="CPAN Testers result" /></a>
+    <img src="https://img.shields.io/badge/coverage-81.4%-orange.svg" alt="coverage 81.4%" />
+    </p>
+</div>
 
 # VERSION
 
-Version 0.1201, released 2016-02-03.
+Version 0.1202, released 2020-12-25.
 
 # SYNOPSIS
 

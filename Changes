@@ -6,18 +6,26 @@ Revision history for Pod-Elemental-Transformer-Splint
  [Bug Fixes]
 
  [Documentation]
-  - Remove empty section.
 
  [Enhancements]
 
  [New Features]
 
  [Other Changes]
+ - Explicitly set $VERSION
+ - Replace TravisCI with Github Actions
 
  [Requirements]
-  - Require List::Util+List::MoreUtils instead of List::AllUtils.
+ - Added missing req Pod::Elemental::Transformer
 
  [Testing]
+
+0.1201 2016-02-03T10:27:59Z UTC
+ [Documentation]
+ - Remove empty section.
+
+ [Requirements]
+ - Require List::Util+List::MoreUtils instead of List::AllUtils.
 
 0.1200 2016-02-02T21:11:41Z UTC
  [Requirements]

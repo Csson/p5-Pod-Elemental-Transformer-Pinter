@@ -1,0 +1,31 @@
+---
+jobs:
+  perl-job:
+    container: perldocker/perl-tester:${{ matrix.perl-version }}
+    name: Perl ${{ matrix.perl-version }}
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Dist::Zilla tests
+      run: 'dzil authordeps --missing          | cpanm --notest
+
+        dzil listdeps   --missing --author | cpanm
+
+        dzil test       --release --author
+
+'
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-latest
+        perl-version:
+        - '5.32'
+name: dzil-test
+on:
+  pull_request:
+    branches:
+    - '*'
+  push:
+    branches:
+    - '*'
