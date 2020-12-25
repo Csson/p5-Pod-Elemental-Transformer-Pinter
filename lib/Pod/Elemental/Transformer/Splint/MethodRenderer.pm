@@ -4,8 +4,9 @@ use warnings;
 
 package Pod::Elemental::Transformer::Splint::MethodRenderer;
 
-# VERSION
 # ABSTRACT: Role for method renderers
+# AUTHORITY
+our $VERSION = '0.1202';
 
 use Moose::Role;
 use Pod::Simple::XHTML;

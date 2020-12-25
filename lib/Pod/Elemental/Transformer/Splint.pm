@@ -4,8 +4,9 @@ use warnings;
 
 package Pod::Elemental::Transformer::Splint;
 
-# VERSION
 # ABSTRACT: Documentation from class metadata
+# AUTHORITY
+our $VERSION = '0.1202';
 
 use Moose;
 use namespace::autoclean;

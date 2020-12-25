@@ -4,8 +4,9 @@ use warnings;
 
 package Pod::Elemental::Transformer::Splint::MethodRenderer::HtmlDefault;
 
-# VERSION
 # ABSTRACT: Default html method renderer
+# AUTHORITY
+our $VERSION = '0.1202';
 
 use Moose;
 use namespace::autoclean;
