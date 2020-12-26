@@ -37,7 +37,7 @@
             "Badge::Depot::Plugin::Kwalitee" : "0",
             "Badge::Depot::Plugin::Perl" : "0",
             "Dist::Zilla" : "6.015",
-            "Dist::Zilla::Plugin::Author::CSSON::GithubActions" : "0",
+            "Dist::Zilla::Plugin::Author::CSSON::GithubActions::Workflow::TestWithMakefile" : "0.0106",
             "Dist::Zilla::Plugin::Authority" : "1.009",
             "Dist::Zilla::Plugin::BumpVersionAfterRelease::Transitional" : "0.009",
             "Dist::Zilla::Plugin::ChangeStats::Dependencies::Git" : "0.0200",
@@ -79,7 +79,6 @@
             "Dist::Zilla::Plugin::Test::Compile" : "2.058",
             "Dist::Zilla::Plugin::Test::EOF" : "0.0501",
             "Dist::Zilla::Plugin::Test::EOL" : "0.18",
-            "Dist::Zilla::Plugin::Test::Kwalitee::Extra" : "v0.2.1",
             "Dist::Zilla::Plugin::Test::NoTabs" : "0.15",
             "Dist::Zilla::Plugin::Test::ReportPrereqs" : "0.027",
             "Dist::Zilla::Plugin::Test::Version" : "1.09",
@@ -502,11 +501,6 @@
             "version" : "0.036"
          },
          {
-            "class" : "Dist::Zilla::Plugin::Test::Kwalitee::Extra",
-            "name" : "Test::Kwalitee::Extra",
-            "version" : "v0.2.1"
-         },
-         {
             "class" : "Dist::Zilla::Plugin::Test::NoTabs",
             "config" : {
                "Dist::Zilla::Plugin::Test::NoTabs" : {
@@ -657,9 +651,9 @@
             "version" : "6.017"
          },
          {
-            "class" : "Dist::Zilla::Plugin::Author::CSSON::GithubActions",
-            "name" : "Author::CSSON::GithubActions",
-            "version" : "0.0102"
+            "class" : "Dist::Zilla::Plugin::Author::CSSON::GithubActions::Workflow::TestWithMakefile",
+            "name" : "Author::CSSON::GithubActions::Workflow::TestWithMakefile",
+            "version" : "0.0106"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Commit",
