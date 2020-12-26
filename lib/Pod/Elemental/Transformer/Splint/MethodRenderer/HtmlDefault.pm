@@ -6,7 +6,7 @@ package Pod::Elemental::Transformer::Splint::MethodRenderer::HtmlDefault;
 
 # ABSTRACT: Default html method renderer
 # AUTHORITY
-our $VERSION = '0.1202';
+our $VERSION = '0.1203';
 
 use Moose;
 use namespace::autoclean;

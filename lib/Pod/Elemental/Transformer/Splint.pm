@@ -6,7 +6,7 @@ package Pod::Elemental::Transformer::Splint;
 
 # ABSTRACT: Documentation from class metadata
 # AUTHORITY
-our $VERSION = '0.1202';
+our $VERSION = '0.1203';
 
 use Moose;
 use namespace::autoclean;

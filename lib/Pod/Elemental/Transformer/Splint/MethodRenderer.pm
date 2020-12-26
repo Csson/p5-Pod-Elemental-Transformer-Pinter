@@ -6,7 +6,7 @@ package Pod::Elemental::Transformer::Splint::MethodRenderer;
 
 # ABSTRACT: Role for method renderers
 # AUTHORITY
-our $VERSION = '0.1202';
+our $VERSION = '0.1203';
 
 use Moose::Role;
 use Pod::Simple::XHTML;

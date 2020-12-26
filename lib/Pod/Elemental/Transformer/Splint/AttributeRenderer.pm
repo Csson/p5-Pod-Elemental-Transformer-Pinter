@@ -6,7 +6,7 @@ package Pod::Elemental::Transformer::Splint::AttributeRenderer;
 
 # ABSTRACT: Role for attribute renderers
 # AUTHORITY
-our $VERSION = '0.1202';
+our $VERSION = '0.1203';
 
 use Moose::Role;
 use Pod::Simple::XHTML;
